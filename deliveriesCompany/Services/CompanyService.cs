@@ -18,17 +18,17 @@ namespace deliveriesCompany.Services
         {
             return AllCompanies;
         }
-        public Company get(int id)
+        public Company getById(int id)
         {
             return AllCompanies.Where((c) => c.Id == id).FirstOrDefault();
         }
-        public bool post(Company company)
+        public bool add(Company company)
         {     if(company == null)    
                 return false;
              AllCompanies.Add(company);
             return true;
         }
-        public bool put(int id, Company company)
+        public bool update(int id, Company company)
         {
            
             for (int i = 0; i < AllCompanies.Count; i++)
@@ -47,9 +47,9 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(get(id) != null)
+            if(getById(id) != null)
             {
-                AllCompanies.Remove(get(id));
+                AllCompanies.Remove(getById(id));
                 return true;
             }
            return false;

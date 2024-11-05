@@ -15,12 +15,12 @@ namespace deliveriesCompany.Services
             return AllSendings;
         }
 
-        public Sending get(int id)
+        public Sending getById(int id)
         {
             return AllSendings.Where((s) => s.Id == id).FirstOrDefault<Sending>();
         }
 
-        public bool post(Sending sending)
+        public bool add(Sending sending)
         {
             if (sending == null)
                 return false;
@@ -28,7 +28,7 @@ namespace deliveriesCompany.Services
             return true;
         }
 
-        public bool put(int id, Sending sending)
+        public bool update(int id, Sending sending)
         {
 
             for (int i = 0; i < AllSendings.Count; i++)
@@ -46,9 +46,9 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if (get(id) != null)
+            if (getById(id) != null)
             {
-                AllSendings.Remove(get(id));
+                AllSendings.Remove(getById(id));
                 return true;
             }
             return false;

@@ -22,16 +22,16 @@ namespace deliveriesCompany.Controllers
         [HttpGet("{id}")]
         public ActionResult< Company> Get(int id)
         {
-           if( _companyService.get(id)==null)
+           if( _companyService.getById(id)==null)
                 return NotFound();
-           return Ok(_companyService.get(id));
+           return Ok(_companyService.getById(id));
         }
 
         
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Company company)
         {
-            if(_companyService.post(company))
+            if(_companyService.add(company))
                 return Ok();
             return BadRequest();
         }
@@ -40,7 +40,7 @@ namespace deliveriesCompany.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Company company)
         {
-            if(! _companyService.put(id, company))
+            if(! _companyService.update(id, company))
                 return NotFound();
             return Ok();
         }

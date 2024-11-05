@@ -18,12 +18,12 @@ namespace deliveriesCompany.Services
             return AllAgreements;
         }
 
-        public Agreement get(int id)
+        public Agreement getById(int id)
         {
             return AllAgreements.Where(a => a.Id == id).FirstOrDefault();
         }
 
-        public bool post(Agreement agreement)
+        public bool add(Agreement agreement)
         {
             if(agreement == null)
                 return false;
@@ -31,7 +31,7 @@ namespace deliveriesCompany.Services
             return true;
         }
 
-        public bool put(int id, Agreement agreement)
+        public bool update(int id, Agreement agreement)
         {
            
             for (int i = 0; i < AllAgreements.Count; i++)
@@ -49,9 +49,9 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(get(id) != null)
+            if(getById(id) != null)
             {
-                AllAgreements.Remove(get(id));
+                AllAgreements.Remove(getById(id));
                 return true;
             }
             return false;

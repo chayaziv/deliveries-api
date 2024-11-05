@@ -17,12 +17,12 @@ namespace deliveriesCompany.Services
             return deliveryMen;
         }
 
-        public DeliveryMan get(int id)
+        public DeliveryMan getById(int id)
         { 
             return deliveryMen.Where(d => d.Id == id).FirstOrDefault();
         }
 
-        public bool post(DeliveryMan deliveryMan)
+        public bool add(DeliveryMan deliveryMan)
         {
             if(deliveryMan==null) 
                 return false; 
@@ -30,7 +30,7 @@ namespace deliveriesCompany.Services
             return true;
         }
 
-        public bool put(int id,DeliveryMan deliveryMan)
+        public bool update(int id,DeliveryMan deliveryMan)
         {
           
             for (int i = 0; i < deliveryMen.Count; i++)
@@ -48,9 +48,9 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(get(id) != null)
+            if(getById(id) != null)
             {
-                deliveryMen.Remove(get(id));
+                deliveryMen.Remove(getById(id));
                 return true;
             }
             return false ;

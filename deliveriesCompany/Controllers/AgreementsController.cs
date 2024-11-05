@@ -21,15 +21,15 @@ namespace deliveriesCompany.Controllers
         [HttpGet("{id}")]
         public ActionResult<Agreement> Get(int id)
         {
-            if (_agreementService.get(id) == null)
+            if (_agreementService.getById(id) == null)
                 return NotFound();
-            return Ok( _agreementService.get(id));
+            return Ok( _agreementService.getById(id));
         }
 
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Agreement agreement)
         {
-            if(_agreementService.post(agreement))
+            if(_agreementService.add(agreement))
                 return Ok();
             return BadRequest();
         }
@@ -38,7 +38,7 @@ namespace deliveriesCompany.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Agreement agreement)
         {
-           if(! _agreementService.put(id, agreement))
+           if(! _agreementService.update(id, agreement))
                 return NotFound();
            return Ok();
         }

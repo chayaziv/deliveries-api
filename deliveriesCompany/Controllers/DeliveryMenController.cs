@@ -21,15 +21,15 @@ namespace deliveriesCompany.Controllers
         [HttpGet("{id}")]
         public ActionResult<DeliveryMan> Get(int id)
         {
-            if (_deliveryManService.get(id) == null)
+            if (_deliveryManService.getById(id) == null)
                 return NotFound();
-            return Ok(_deliveryManService.get(id));
+            return Ok(_deliveryManService.getById(id));
 
         }
         [HttpPost]
-        public ActionResult Post([FromBody] DeliveryMan deliveryMan)
+        public ActionResult<bool> Post([FromBody] DeliveryMan deliveryMan)
         {
-           if( _deliveryManService.post(deliveryMan))
+           if( _deliveryManService.add(deliveryMan))
                 return Ok();
            return BadRequest();
         }
@@ -37,7 +37,7 @@ namespace deliveriesCompany.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] DeliveryMan deliveryMan)
         {
-            if (!_deliveryManService.put(id, deliveryMan))
+            if (!_deliveryManService.update(id, deliveryMan))
                 return NotFound();
             return Ok();
         }
