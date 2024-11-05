@@ -4,7 +4,7 @@ namespace deliveriesCompany.Services
 {
     public class SendingService
     {
-         static List<Sending> AllSendings { get; set; } = new List<Sending>()
+        static List<Sending> AllSendings { get; set; } = new List<Sending>()
          {
             new Sending() { Id = 1, Breakable = true, DestinationFloor = 2, CraneNeed = true },
             new Sending() { Id = 2, Breakable = true, DestinationFloor = 2, CraneNeed = true },
@@ -20,15 +20,17 @@ namespace deliveriesCompany.Services
             return AllSendings.Where((s) => s.Id == id).FirstOrDefault<Sending>();
         }
 
-        public void post(Sending sending)
+        public bool post(Sending sending)
         {
-            if (sending != null)
-                AllSendings.Add(sending);
+            if (sending == null)
+                return false;
+            AllSendings.Add(sending);
+            return true;
         }
 
         public bool put(int id, Sending sending)
         {
-           
+
             for (int i = 0; i < AllSendings.Count; i++)
             {
                 if (AllSendings[i].Id == id)
@@ -44,7 +46,7 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(get(id) != null)
+            if (get(id) != null)
             {
                 AllSendings.Remove(get(id));
                 return true;

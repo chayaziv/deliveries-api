@@ -27,9 +27,11 @@ namespace deliveriesCompany.Controllers
 
         }
         [HttpPost]
-        public void Post([FromBody] DeliveryMan deliveryMan)
+        public ActionResult Post([FromBody] DeliveryMan deliveryMan)
         {
-            _deliveryManService.post(deliveryMan);
+           if( _deliveryManService.post(deliveryMan))
+                return Ok();
+           return BadRequest();
         }
 
         [HttpPut("{id}")]

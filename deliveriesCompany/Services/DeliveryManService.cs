@@ -22,9 +22,12 @@ namespace deliveriesCompany.Services
             return deliveryMen.Where(d => d.Id == id).FirstOrDefault();
         }
 
-        public void post(DeliveryMan deliveryMan)
+        public bool post(DeliveryMan deliveryMan)
         {
+            if(deliveryMan==null) 
+                return false; 
             deliveryMen.Add(deliveryMan);
+            return true;
         }
 
         public bool put(int id,DeliveryMan deliveryMan)
