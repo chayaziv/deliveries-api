@@ -3,8 +3,8 @@
     
     public class Company
     {
-        
-        public int Id { get; set; }
+        private static int _id = 0;
+        public int Id { get; private set; }
 
         public string AddressOfWarehouse { get; set; }
 
@@ -17,6 +17,11 @@
         public string ContactPersonMail { get; set; }
 
         public  DateTime StartAgreementDate { get; set; }
+
+        public Company()
+        {
+            Id = _id++;
+        }
 
         public void copy(Company other)
         {

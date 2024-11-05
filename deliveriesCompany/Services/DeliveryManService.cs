@@ -7,9 +7,9 @@ namespace deliveriesCompany.Services
 
         public static List<DeliveryMan> deliveryMen=new List<DeliveryMan>()
         {
-            new DeliveryMan(){ Id=1,PhoneNumber="055454878"},
-            new DeliveryMan(){ Id=2,PhoneNumber="055454878"},
-            new DeliveryMan(){ Id=3,PhoneNumber="055454878"},
+            new DeliveryMan(){ IdNumber="2156148555",PhoneNumber="055454878"},
+            new DeliveryMan(){ IdNumber="2565959512",PhoneNumber="055454878"},
+            new DeliveryMan(){ IdNumber="3453617717",PhoneNumber="055454878"},
         };
 
         public List<DeliveryMan> getall()

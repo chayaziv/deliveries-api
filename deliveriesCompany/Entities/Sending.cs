@@ -19,11 +19,11 @@
 
     public class Sending
     {
-
+        private static int _id = 0;
         public int Id { get; set; }
-        public int DeliveryManId { get; set; }
+        public int DeliveryManCode { get; set; }
 
-        public int CompanyId { get; set; }
+        public int CompanyCode { get; set; }
 
         public Status Status { get; set; }
 
@@ -46,11 +46,16 @@
         public bool CraneNeed { get; set; }
         public double Distance { get; set; }
 
+        public Sending()
+        {
+            Id=_id++;
+        }
+
         public void copy(Sending Other)
         {
             Other.Id = Id;
-            DeliveryManId=Other.DeliveryManId;
-            CompanyId=Other.CompanyId;
+            DeliveryManCode=Other.DeliveryManCode;
+            CompanyCode=Other.CompanyCode;
             Status = Other.Status;
             Weight = Other.Weight;
             Urgency=Other.Urgency;

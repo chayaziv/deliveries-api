@@ -7,10 +7,10 @@ namespace deliveriesCompany.Services
 
         public static List<Agreement> AllAgreements { get; set; } = new List<Agreement>()
         {
-            new Agreement(){Id=1,MinCountPackage=100},
-            new Agreement(){Id=2,MinCountPackage=100},
-            new Agreement(){Id=3,MinCountPackage=100},
-            new Agreement(){Id=4,MinCountPackage=100},
+            new Agreement(){MinCountPackage=100},
+            new Agreement(){MinCountPackage=100},
+            new Agreement(){MinCountPackage=100},
+            new Agreement(){MinCountPackage=100},
         };
 
         public List<Agreement> getall()

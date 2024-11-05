@@ -7,11 +7,11 @@ namespace deliveriesCompany.Services
 
         static List<Company> AllCompanies { get; set; } = new List<Company>()
         { 
-            new Company(){ Id=1,StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ Id=2,StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ Id=3,StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"}
         };
         public List<Company> getAll()

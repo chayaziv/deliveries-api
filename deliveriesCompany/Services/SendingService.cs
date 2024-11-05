@@ -6,9 +6,9 @@ namespace deliveriesCompany.Services
     {
         static List<Sending> AllSendings { get; set; } = new List<Sending>()
          {
-            new Sending() { Id = 1, Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() { Id = 2, Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() { Id = 3, Breakable = true, DestinationFloor = 2, CraneNeed = true }
+            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
+            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
+            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true }
          };
         public List<Sending> getAll()
         {
@@ -35,11 +35,10 @@ namespace deliveriesCompany.Services
             {
                 if (AllSendings[i].Id == id)
                 {
-                    AllSendings[i] .copy( sending);
+                    AllSendings[i].copy( sending);
                     return true;
 
                 }
-
             }
             return false;
         }

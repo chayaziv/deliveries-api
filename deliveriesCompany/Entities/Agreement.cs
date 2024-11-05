@@ -6,9 +6,10 @@
     public enum Distribution { earthly, global, regional }
     public class Agreement
     {
-       
 
-        public int Id { get; set; }
+        private static int _id = 0;
+
+        public int Id { get; private set; }
         public periodAgreement Type { get; set; }
 
         public double PricePerPackage { get; set; }
@@ -16,6 +17,11 @@
         public int MinCountPackage { get; set; }
 
         public Distribution Distribution { get; set; }
+
+        public Agreement()
+        {
+            Id = _id++;
+        }
 
         public void copy (Agreement other)
         {
