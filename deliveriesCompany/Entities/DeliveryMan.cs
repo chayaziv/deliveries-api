@@ -33,7 +33,7 @@
             Email=other.Email;
             PreferedArea=other.PreferedArea;
             Vehicle=other.Vehicle;
-            Salary
+            Salary=other.Salary;
         }
 
     }
