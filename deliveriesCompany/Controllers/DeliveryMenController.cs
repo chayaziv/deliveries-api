@@ -13,7 +13,7 @@ namespace deliveriesCompany.Controllers
         readonly DeliveryManService _deliveryManService = new DeliveryManService();
 
         [HttpGet]
-        public List<DeliveryMan> Get()
+        public ActionResult< List<DeliveryMan>> Get()
         {
             return _deliveryManService.getall();
         }

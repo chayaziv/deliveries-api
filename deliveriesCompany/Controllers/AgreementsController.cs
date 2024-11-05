@@ -13,7 +13,7 @@ namespace deliveriesCompany.Controllers
         readonly AgreementService _agreementService=new AgreementService();
 
         [HttpGet]
-        public List<Agreement> Get()
+        public ActionResult<List<Agreement>> Get()
         {
             return _agreementService.getall();
         }

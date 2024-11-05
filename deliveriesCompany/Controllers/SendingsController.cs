@@ -14,7 +14,7 @@ namespace deliveriesCompany.Controllers
         readonly SendingService _sendingService = new SendingService();
 
         [HttpGet]
-        public List<Sending> Get()
+        public ActionResult< List<Sending>> Get()
         {
             return _sendingService.getAll();
         }

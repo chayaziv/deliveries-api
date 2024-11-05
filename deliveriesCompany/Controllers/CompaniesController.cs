@@ -14,7 +14,7 @@ namespace deliveriesCompany.Controllers
          readonly CompanyService _companyService = new CompanyService();
 
         [HttpGet]
-        public List<Company> Get()
+        public ActionResult< List<Company>> Get()
         {
            return _companyService.getAll();
         }
