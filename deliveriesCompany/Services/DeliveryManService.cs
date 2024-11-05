@@ -37,11 +37,9 @@ namespace deliveriesCompany.Services
             {
                 if (deliveryMen[i].Id == id)
                 {
-                    deliveryMen[i] = deliveryMan;
+                    deliveryMen[i] .copy( deliveryMan);
                     return true;
-
                 }
-
             }
             return false;
         }

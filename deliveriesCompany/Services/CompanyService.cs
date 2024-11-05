@@ -35,11 +35,9 @@ namespace deliveriesCompany.Services
             {
                 if (AllCompanies[i].Id == id)
                 {
-                    AllCompanies[i] = company;
+                    AllCompanies[i] .copy(company);
                     return true;
-
                 }
-
             }
             return false;
 

@@ -25,7 +25,7 @@ namespace deliveriesCompany.Services
 
         public bool add(Agreement agreement)
         {
-            if(agreement == null)
+            if (agreement == null)
                 return false;
             AllAgreements.Add(agreement);
             return true;
@@ -33,12 +33,12 @@ namespace deliveriesCompany.Services
 
         public bool update(int id, Agreement agreement)
         {
-           
+
             for (int i = 0; i < AllAgreements.Count; i++)
             {
                 if (AllAgreements[i].Id == id)
                 {
-                    AllAgreements[i] = agreement;
+                    AllAgreements[i].copy(agreement);
                     return true;
 
                 }
@@ -49,13 +49,13 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(getById(id) != null)
+            if (getById(id) != null)
             {
                 AllAgreements.Remove(getById(id));
                 return true;
             }
             return false;
-            
+
         }
     }
 }

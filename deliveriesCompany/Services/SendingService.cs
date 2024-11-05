@@ -35,7 +35,7 @@ namespace deliveriesCompany.Services
             {
                 if (AllSendings[i].Id == id)
                 {
-                    AllSendings[i] = sending;
+                    AllSendings[i] .copy( sending);
                     return true;
 
                 }
