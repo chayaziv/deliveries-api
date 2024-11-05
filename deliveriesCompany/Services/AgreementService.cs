@@ -5,40 +5,33 @@ namespace deliveriesCompany.Services
     public class AgreementService
     {
 
-        public static List<Agreement> AllAgreements { get; set; } = new List<Agreement>()
-        {
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-        };
-
+        public DataContex dataContex= ManagerDataContext.DataContex;
         public List<Agreement> getall()
         {
-            return AllAgreements;
+            return dataContex.AgreementsList;
         }
 
         public Agreement getById(int id)
         {
-            return AllAgreements.Where(a => a.Id == id).FirstOrDefault();
+            return dataContex.AgreementsList.Where(a => a.Id == id).FirstOrDefault();
         }
 
         public bool add(Agreement agreement)
         {
             if (agreement == null)
                 return false;
-            AllAgreements.Add(agreement);
+            dataContex.AgreementsList.Add(agreement);
             return true;
         }
 
         public bool update(int id, Agreement agreement)
         {
 
-            for (int i = 0; i < AllAgreements.Count; i++)
+            for (int i = 0; i < dataContex.AgreementsList.Count; i++)
             {
-                if (AllAgreements[i].Id == id)
+                if (dataContex.AgreementsList[i].Id == id)
                 {
-                    AllAgreements[i].copy(agreement);
+                    dataContex.AgreementsList[i].copy(agreement);
                     return true;
 
                 }
@@ -51,7 +44,7 @@ namespace deliveriesCompany.Services
         {
             if (getById(id) != null)
             {
-                AllAgreements.Remove(getById(id));
+                dataContex.AgreementsList.Remove(getById(id));
                 return true;
             }
             return false;

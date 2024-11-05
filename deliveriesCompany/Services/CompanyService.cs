@@ -5,37 +5,29 @@ namespace deliveriesCompany.Services
     public class CompanyService
     {
 
-        static List<Company> AllCompanies { get; set; } = new List<Company>()
-        { 
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"}
-        };
+       DataContex dataContex=ManagerDataContext.DataContex;
         public List<Company> getAll()
         {
-            return AllCompanies;
+            return dataContex.CompaniesList;
         }
         public Company getById(int id)
         {
-            return AllCompanies.Where((c) => c.Id == id).FirstOrDefault();
+            return dataContex.CompaniesList.Where((c) => c.Id == id).FirstOrDefault();
         }
         public bool add(Company company)
         {     if(company == null)    
                 return false;
-             AllCompanies.Add(company);
+            dataContex.CompaniesList.Add(company);
             return true;
         }
         public bool update(int id, Company company)
         {
            
-            for (int i = 0; i < AllCompanies.Count; i++)
+            for (int i = 0; i < dataContex.CompaniesList.Count; i++)
             {
-                if (AllCompanies[i].Id == id)
+                if (dataContex.CompaniesList[i].Id == id)
                 {
-                    AllCompanies[i] .copy(company);
+                    dataContex.CompaniesList[i] .copy(company);
                     return true;
                 }
             }
@@ -47,7 +39,7 @@ namespace deliveriesCompany.Services
         {
             if(getById(id) != null)
             {
-                AllCompanies.Remove(getById(id));
+                dataContex.CompaniesList.Remove(getById(id));
                 return true;
             }
            return false;

@@ -4,38 +4,33 @@ namespace deliveriesCompany.Services
 {
     public class SendingService
     {
-        static List<Sending> AllSendings { get; set; } = new List<Sending>()
-         {
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true }
-         };
+        DataContex dataContex = ManagerDataContext.DataContex;
         public List<Sending> getAll()
         {
-            return AllSendings;
+            return dataContex.SendingsList;
         }
 
         public Sending getById(int id)
         {
-            return AllSendings.Where((s) => s.Id == id).FirstOrDefault<Sending>();
+            return dataContex.SendingsList.Where((s) => s.Id == id).FirstOrDefault<Sending>();
         }
 
         public bool add(Sending sending)
         {
             if (sending == null)
                 return false;
-            AllSendings.Add(sending);
+            dataContex.SendingsList.Add(sending);
             return true;
         }
 
         public bool update(int id, Sending sending)
         {
 
-            for (int i = 0; i < AllSendings.Count; i++)
+            for (int i = 0; i < dataContex.SendingsList.Count; i++)
             {
-                if (AllSendings[i].Id == id)
+                if (dataContex.SendingsList[i].Id == id)
                 {
-                    AllSendings[i].copy( sending);
+                    dataContex.SendingsList[i].copy( sending);
                     return true;
 
                 }
@@ -47,7 +42,7 @@ namespace deliveriesCompany.Services
         {
             if (getById(id) != null)
             {
-                AllSendings.Remove(getById(id));
+                dataContex.SendingsList.Remove(getById(id));
                 return true;
             }
             return false;
