@@ -21,9 +21,9 @@
     {
         private static int _id = 0;
         public int Id { get; set; }
-        public int DeliveryManCode { get; set; }
+        public int DeliveryManId { get; set; }
 
-        public int CompanyCode { get; set; }
+        public int CompanyId { get; set; }
 
         public Status Status { get; set; }
 
@@ -54,8 +54,8 @@
         public void copy(Sending Other)
         {
             Other.Id = Id;
-            DeliveryManCode=Other.DeliveryManCode;
-            CompanyCode=Other.CompanyCode;
+            DeliveryManId=Other.DeliveryManId;
+            CompanyId=Other.CompanyId;
             Status = Other.Status;
             Weight = Other.Weight;
             Urgency=Other.Urgency;
