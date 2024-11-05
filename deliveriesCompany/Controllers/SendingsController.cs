@@ -28,9 +28,11 @@ namespace deliveriesCompany.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Sending sending)
+        public ActionResult<bool> Post([FromBody] Sending sending)
         {
-            _sendingService.post(sending);
+            if(_sendingService.post(sending))
+                return Ok();
+            return BadRequest();
         }
 
         [HttpPut("{id}")]

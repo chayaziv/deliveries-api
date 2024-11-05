@@ -22,9 +22,11 @@ namespace deliveriesCompany.Services
         {
             return AllCompanies.Where((c) => c.Id == id).FirstOrDefault();
         }
-        public void post(Company company)
-        {         
+        public bool post(Company company)
+        {     if(company == null)    
+                return false;
              AllCompanies.Add(company);
+            return true;
         }
         public bool put(int id, Company company)
         {

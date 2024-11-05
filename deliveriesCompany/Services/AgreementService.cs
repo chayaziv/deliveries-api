@@ -23,9 +23,12 @@ namespace deliveriesCompany.Services
             return AllAgreements.Where(a => a.Id == id).FirstOrDefault();
         }
 
-        public void post(Agreement agreement)
+        public bool post(Agreement agreement)
         {
+            if(agreement == null)
+                return false;
             AllAgreements.Add(agreement);
+            return true;
         }
 
         public bool put(int id, Agreement agreement)

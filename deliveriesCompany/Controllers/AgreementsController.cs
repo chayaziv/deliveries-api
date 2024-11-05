@@ -27,9 +27,11 @@ namespace deliveriesCompany.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Agreement agreement)
+        public ActionResult<bool> Post([FromBody] Agreement agreement)
         {
-            _agreementService.post(agreement);
+            if(_agreementService.post(agreement))
+                return Ok();
+            return BadRequest();
         }
 
     

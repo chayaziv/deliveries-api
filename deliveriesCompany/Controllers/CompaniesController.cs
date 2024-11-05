@@ -29,9 +29,11 @@ namespace deliveriesCompany.Controllers
 
         
         [HttpPost]
-        public void Post([FromBody] Company company)
+        public ActionResult<bool> Post([FromBody] Company company)
         {
-            _companyService.post(company);
+            if(_companyService.post(company))
+                return Ok();
+            return BadRequest();
         }
 
         
