@@ -23,8 +23,18 @@
 
         public Vehicle Vehicle { get; set; }
 
-        public double salary { get; set; }
+        public double Salary { get; set; }
         public double Bonus { get; set; }
+
+        public void copy(DeliveryMan other)
+        {
+            Name=other.Name;
+            PhoneNumber=other.PhoneNumber;
+            Email=other.Email;
+            PreferedArea=other.PreferedArea;
+            Vehicle=other.Vehicle;
+            Salary
+        }
 
     }
 }

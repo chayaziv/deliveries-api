@@ -21,9 +21,9 @@
     {
 
         public int Id { get; set; }
-        public DeliveryMan DeliveryMan { get; set; }
+        public int DeliveryManId { get; set; }
 
-        public Company Company { get; set; }
+        public int CompanyId { get; set; }
 
         public Status Status { get; set; }
 
@@ -46,7 +46,24 @@
         public bool CraneNeed { get; set; }
         public double Distance { get; set; }
 
-
+        public void copy(Sending Other)
+        {
+            Other.Id = Id;
+            DeliveryManId=Other.DeliveryManId;
+            CompanyId=Other.CompanyId;
+            Status = Other.Status;
+            Weight = Other.Weight;
+            Urgency=Other.Urgency;
+            Price = Other.Price;
+            Volume = Other.Volume;
+            Breakable=Other.Breakable;
+            Refrigeration=Other.Refrigeration;
+            DestinationAdress=Other.DestinationAdress;
+            DestinationFloor=Other.DestinationFloor;
+            CraneNeed=Other.CraneNeed;
+            Distance=Other.Distance;
+                     
+        }
 
 
     }
