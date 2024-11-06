@@ -19,7 +19,7 @@
 
     public class Sending
     {
-        private static int _id = 0;
+        private static int _id = 1;
         public int Id { get; set; }
         public int DeliveryManId { get; set; }
 

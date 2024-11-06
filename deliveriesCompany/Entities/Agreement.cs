@@ -7,7 +7,7 @@
     public class Agreement
     {
 
-        private static int _id = 0;
+        private static int _id = 1;
 
         public int Id { get; private set; }
         public periodAgreement Type { get; set; }

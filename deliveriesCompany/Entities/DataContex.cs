@@ -28,9 +28,9 @@
         };
         public List<Sending> SendingsList { get; set; } = new List<Sending>()
         {
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true },
-            new Sending() {  Breakable = true, DestinationFloor = 2, CraneNeed = true }
+            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
+            new Sending() {DeliveryManId=2,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
+            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.Ready}
         };
     }
 }

@@ -3,7 +3,7 @@
     
     public class Company
     {
-        private static int _id = 0;
+        private static int _id = 1;
         public int Id { get; private set; }
 
         public string AddressOfWarehouse { get; set; }
