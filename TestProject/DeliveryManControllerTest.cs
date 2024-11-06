@@ -10,7 +10,8 @@ namespace TestProject
 {
     public class DeliveryManControllerTest
     {
-        
+        #region DELETE
+       
         [Fact]
         public void Delete_ReturnsBadRequest_not_exit()
         {
@@ -38,9 +39,9 @@ namespace TestProject
             var controller = new DeliveryMenController();
 
             var result = controller.Delete(id);
-
-            //Assert.IsType<BadRequestObjectResult>(result);
+         
             Assert.IsType<OkResult>(result);
         }
+        #endregion
     }
 }
