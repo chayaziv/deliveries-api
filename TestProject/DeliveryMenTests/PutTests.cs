@@ -31,7 +31,8 @@ namespace TestProject.DeliveryMenTests
             DeliveryMan deliveryMan = new DeliveryMan() { Email = newEmail };
 
             var res = controller.Put(id, deliveryMan);
-            var actual= ManagerDataContext.DataContex.deliveryMenList.Where(x => x.Id == id).FirstOrDefault().Email;
+            var actual= controller.Get().Value.Where(x => x.Id == id).FirstOrDefault().Email;
+
             Assert.Equal(newEmail, actual);
         }
 
