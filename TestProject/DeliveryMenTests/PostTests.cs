@@ -13,7 +13,7 @@ namespace TestProject.DeliveryMenTests
     {
         DeliveryMenController controller = new DeliveryMenController();
         [Fact]
-        public void test_was_added()
+        public void ReturnsOKRequest_was_added()
         {
             DeliveryMan newDeliveryMan=new DeliveryMan() { Email="test@gmail.com"};
             var count1 = controller.Get().Value.Count;

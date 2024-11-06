@@ -31,7 +31,7 @@ namespace TestProject.DeliveryMenTests
             Assert.IsType<BadRequestResult>(result);
         }
         [Fact]
-        public void Returns_OKRequest()
+        public void ReturnsOKRequest()
         {
             var id = 3;
 

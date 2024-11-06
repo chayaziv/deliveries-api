@@ -13,7 +13,7 @@ namespace TestProject.DeliveryMenTests
     {
         DeliveryMenController controller = new DeliveryMenController();
         [Fact]
-        public void ReturnsBadRequest_not_exit()
+        public void ReturnsBadRequest_id_not_exit()
         {
             var id = 9;
             DeliveryMan deliveryMan = new DeliveryMan() {Email="dlv@gmail.com" };
