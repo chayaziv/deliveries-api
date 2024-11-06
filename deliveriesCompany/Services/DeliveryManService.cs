@@ -41,12 +41,17 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if (getById(id) != null)
-            {
-                dataContex.deliveryMenList.Remove(getById(id));
-                return true;
-            }
-            return false;
+            if (getById(id) == null)
+                return false;
+            if(!isValidDelete(id))
+                return false;
+            dataContex.deliveryMenList.Remove(getById(id));
+            return true;
+        }
+
+        public bool isValidDelete(int id)
+        {
+            return  false;
         }
     }
 }

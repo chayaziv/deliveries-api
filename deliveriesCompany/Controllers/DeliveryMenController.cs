@@ -46,7 +46,7 @@ namespace deliveriesCompany.Controllers
         public ActionResult Delete(int id)
         {
             if (!_deliveryManService.delete(id))
-                return NotFound();
+                return BadRequest();
             return Ok();
         }
     }
