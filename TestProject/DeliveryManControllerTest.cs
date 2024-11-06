@@ -12,16 +12,35 @@ namespace TestProject
     {
         
         [Fact]
-        public void Delete_ReturnsBadRequest()
+        public void Delete_ReturnsBadRequest_not_exit()
         {
             var id = 6;
             var controller = new DeliveryMenController();
 
             var result = controller.Delete(id);
-
-            Assert.IsType<BadRequestObjectResult>(result);
+            
+            Assert.IsType<BadRequestResult>(result);
         }
+        [Fact]
+        public void Delete_ReturnsBadRequest_not_valid()
+        {
+            var id = 1;
+            var controller = new DeliveryMenController();
 
+            var result = controller.Delete(id);
 
+            Assert.IsType<BadRequestResult>(result);
+        }
+        [Fact]
+        public void Delete_Returns_OKRequest()
+        {
+            var id = 3;
+            var controller = new DeliveryMenController();
+
+            var result = controller.Delete(id);
+
+            //Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<OkResult>(result);
+        }
     }
 }
