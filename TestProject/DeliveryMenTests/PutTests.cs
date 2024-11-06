@@ -18,19 +18,19 @@ namespace TestProject.DeliveryMenTests
             var id = 9;
             DeliveryMan deliveryMan = new DeliveryMan() {Email="dlv@gmail.com" };
 
-            var res = controller.Put(id, deliveryMan);
+            var result = controller.Put(id, deliveryMan);
 
-            Assert.IsType<NotFoundResult>(res);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
-        public void Update_Email()
+        public void change_Email()
         {
             var id = 1;
             var newEmail = "test2@gmail.com";
             DeliveryMan deliveryMan = new DeliveryMan() { Email = newEmail };
 
-            var res = controller.Put(id, deliveryMan);
+            var result = controller.Put(id, deliveryMan);
             var actual= controller.Get().Value.Where(x => x.Id == id).FirstOrDefault().Email;
 
             Assert.Equal(newEmail, actual);

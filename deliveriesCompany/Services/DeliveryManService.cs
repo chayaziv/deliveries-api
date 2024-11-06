@@ -21,6 +21,10 @@ namespace deliveriesCompany.Services
         {
             if (deliveryMan == null)
                 return false;
+            if (deliveryMan.Email == null)
+                return false;
+            if(deliveryMan.IdNumber!=null && !IsValidIdentityNumber(deliveryMan.IdNumber))
+                return false;
             dataContex.deliveryMenList.Add(deliveryMan);
             return true;
         }
@@ -51,7 +55,14 @@ namespace deliveriesCompany.Services
 
         public bool isValidDelete(int id)
         {
-          return !dataContex.SendingsList.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
+            return !dataContex.SendingsList.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
         }
+        public static bool IsValidIdentityNumber(string id)
+        {
+            return id.Length == 9 && id.All(char.IsDigit) &&
+            id.Select((c, i) => (c - '0') * (i % 2 == 0 ? 1 : 2))
+              .Sum(d => d > 9 ? d - 9 : d) % 10 == 0;
+        }
+
     }
 }

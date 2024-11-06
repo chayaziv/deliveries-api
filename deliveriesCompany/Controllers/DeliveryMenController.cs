@@ -27,7 +27,7 @@ namespace deliveriesCompany.Controllers
 
         }
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] DeliveryMan deliveryMan)
+        public ActionResult Post([FromBody] DeliveryMan deliveryMan)
         {
            if( _deliveryManService.add(deliveryMan))
                 return Ok();
