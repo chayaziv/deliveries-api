@@ -6,42 +6,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject
+namespace TestProject.DeliveryMenTests
 {
-    public class DeliveryManControllerTest
+    public class DeleteTests
     {
-        #region DELETE
-       
+
+        DeliveryMenController controller = new DeliveryMenController();
         [Fact]
-        public void Delete_ReturnsBadRequest_not_exit()
+        public void ReturnsBadRequest_not_exit()
         {
             var id = 6;
-            var controller = new DeliveryMenController();
-
-            var result = controller.Delete(id);
             
+            var result = controller.Delete(id);
+
             Assert.IsType<BadRequestResult>(result);
         }
         [Fact]
-        public void Delete_ReturnsBadRequest_not_valid()
+        public void ReturnsBadRequest_not_valid()
         {
             var id = 1;
-            var controller = new DeliveryMenController();
-
+            
             var result = controller.Delete(id);
 
             Assert.IsType<BadRequestResult>(result);
         }
         [Fact]
-        public void Delete_Returns_OKRequest()
+        public void Returns_OKRequest()
         {
             var id = 3;
-            var controller = new DeliveryMenController();
 
             var result = controller.Delete(id);
-         
+
             Assert.IsType<OkResult>(result);
         }
-        #endregion
     }
 }
