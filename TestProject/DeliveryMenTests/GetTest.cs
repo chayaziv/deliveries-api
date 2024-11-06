@@ -15,9 +15,11 @@ namespace TestProject.DeliveryMenTests
         [Fact]
         public void ReturnOk_get_all()
         {
+            var count=ManagerDataContext.DataContex.deliveryMenList.Count;
+
             var result = controller.Get();
 
-            Assert.Equal(3, result.Value.Count);
+            Assert.Equal(count, result.Value.Count);
             
         }
 
