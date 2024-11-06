@@ -43,7 +43,7 @@ namespace deliveriesCompany.Services
         {
             if (getById(id) == null)
                 return false;
-            if(!isValidDelete(id))
+            if (!isValidDelete(id))
                 return false;
             dataContex.deliveryMenList.Remove(getById(id));
             return true;
@@ -51,7 +51,7 @@ namespace deliveriesCompany.Services
 
         public bool isValidDelete(int id)
         {
-            return  false;
+          return !dataContex.SendingsList.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
         }
     }
 }
