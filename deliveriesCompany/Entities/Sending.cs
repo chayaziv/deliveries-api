@@ -19,7 +19,7 @@
 
     public class Sending
     {
-        private static int _id = 1;
+       
         public int Id { get; set; }
         public int DeliveryManId { get; set; }
 
@@ -45,15 +45,9 @@
 
         public bool CraneNeed { get; set; }
         public double Distance { get; set; }
-
-        public Sending()
-        {
-            Id=_id++;
-        }
-
+        
         public void copy(Sending Other)
-        {
-            Other.Id = Id;
+        {         
             DeliveryManId=Other.DeliveryManId;
             CompanyId=Other.CompanyId;
             Status = Other.Status;

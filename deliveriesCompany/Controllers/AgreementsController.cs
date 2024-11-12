@@ -10,44 +10,44 @@ namespace deliveriesCompany.Controllers
     [ApiController]
     public class AgreementsController : ControllerBase
     {
-        readonly AgreementService _agreementService=new AgreementService();
+        readonly AgreementService _agreementService = new AgreementService();
 
         [HttpGet]
         public ActionResult<List<Agreement>> Get()
         {
             return _agreementService.getall();
         }
-        
+
         [HttpGet("{id}")]
         public ActionResult<Agreement> Get(int id)
         {
             if (_agreementService.getById(id) == null)
                 return NotFound();
-            return Ok( _agreementService.getById(id));
+            return Ok(_agreementService.getById(id));
         }
 
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Agreement agreement)
         {
-            if(_agreementService.add(agreement))
+            if (_agreementService.add(agreement))
                 return Ok();
             return BadRequest();
         }
 
-    
+
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Agreement agreement)
         {
-           if(! _agreementService.update(id, agreement))
+            if (!_agreementService.update(id, agreement))
                 return NotFound();
-           return Ok();
+            return Ok();
         }
 
 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-           if(! _agreementService.delete(id))
+            if (!_agreementService.delete(id))
                 return NotFound();
             return Ok();
         }

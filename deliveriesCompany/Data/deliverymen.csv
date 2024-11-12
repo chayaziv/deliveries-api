@@ -1,0 +1,19 @@
+Id,IdNumber,Name,PhoneNumber,Email,PreferedArea,Vehicle,Salary,Bonus
+2,4703949,Jane Smith,987654321,jane@example.com,Gush_Dan,car,3500,300
+4,3136972,Bob Brown,321321321,bob@example.com,Haifa,car,3100,220
+5,5496670,Charlie Davis,456456456,charlie@example.com,Gush_Dan,truck,3400,270
+6,3771847,Diana Prince,789789789,diana@example.com,North,motorcycle,3300,240
+7,8923275,Bruce Wayne,456123789,bruce@example.com,Jerusalem,car,3800,400
+8,6183571,Clark Kent,789123456,clark@example.com,Gush_Dan,truck,3700,380
+9,1564929,Barry Allen,321456987,barry@example.com,Haifa,motorcycle,3100,210
+10,6807181,Hal Jordan,654789321,hal@example.com,North,car,3400,280
+11,2314905,Arthur Curry,147258369,arthur@example.com,Jerusalem,truck,3600,260
+12,3726397,Victor Stone,258369147,victor@example.com,Gush_Dan,motorcycle,3350,240
+13,5712853,Peter Parker,963852741,peter@example.com,Haifa,car,3150,230
+14,5525596,Tony Stark,789456123,tony@example.com,North,truck,3550,290
+15,3478071,Natasha Romanoff,321654987,natasha@example.com,Jerusalem,car,3250,250
+16,6285468,Wanda Maximoff,654123789,wanda@example.com,Gush_Dan,motorcycle,3450,270
+17,3295071,Steve Rogers,123789456,steve@example.com,Haifa,truck,3700,310
+18,7439766,Stephen Strange,456987123,stephen@example.com,North,car,3600,280
+19,5114112,T'Challa,789321654,tchalla@example.com,Jerusalem,motorcycle,3500,300
+20,2263765,string----------,string,string,North,truck,0,220

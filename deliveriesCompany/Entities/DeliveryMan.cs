@@ -12,8 +12,7 @@
 
     public class DeliveryMan
     {
-        private static int _id =1;
-        public int Id { get;private set; }
+        public int Id { get; set; }
         public string IdNumber { get; set; }
 
         public string Name { get; set; }
@@ -28,10 +27,7 @@
         public double Salary { get; set; }
         public double Bonus { get; set; }
 
-        public DeliveryMan()
-        {
-            Id=_id++;
-        }
+     
 
         public void copy(DeliveryMan other)
         {

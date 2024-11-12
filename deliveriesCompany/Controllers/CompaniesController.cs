@@ -11,47 +11,47 @@ namespace deliveriesCompany.Controllers
     public class CompaniesController : ControllerBase
     {
 
-         readonly CompanyService _companyService = new CompanyService();
+        readonly CompanyService _companyService = new CompanyService();
 
         [HttpGet]
-        public ActionResult< List<Company>> Get()
+        public ActionResult<List<Company>> Get()
         {
-           return _companyService.getAll();
-        }
-    
-        [HttpGet("{id}")]
-        public ActionResult< Company> Get(int id)
-        {
-           if( _companyService.getById(id)==null)
-                return NotFound();
-           return Ok(_companyService.getById(id));
+            return _companyService.getAll();
         }
 
-        
+        [HttpGet("{id}")]
+        public ActionResult<Company> Get(int id)
+        {
+            if (_companyService.getById(id) == null)
+                return NotFound();
+            return Ok(_companyService.getById(id));
+        }
+
+
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Company company)
         {
-            if(_companyService.add(company))
+            if (_companyService.add(company))
                 return Ok();
             return BadRequest();
         }
 
-        
+
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Company company)
         {
-            if(! _companyService.update(id, company))
+            if (!_companyService.update(id, company))
                 return NotFound();
             return Ok();
         }
 
-        
+
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-           if(! _companyService.delete(id))
+            if (!_companyService.delete(id))
                 return NotFound();
-           return Ok();
+            return Ok();
         }
     }
 }

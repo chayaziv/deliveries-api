@@ -14,7 +14,7 @@ namespace deliveriesCompany.Controllers
         readonly SendingService _sendingService = new SendingService();
 
         [HttpGet]
-        public ActionResult< List<Sending>> Get()
+        public ActionResult<List<Sending>> Get()
         {
             return _sendingService.getAll();
         }
@@ -30,7 +30,7 @@ namespace deliveriesCompany.Controllers
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Sending sending)
         {
-            if(_sendingService.add(sending))
+            if (_sendingService.add(sending))
                 return Ok();
             return BadRequest();
         }

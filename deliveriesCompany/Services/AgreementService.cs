@@ -5,49 +5,48 @@ namespace deliveriesCompany.Services
     public class AgreementService
     {
 
-        public DataContex dataContex= ManagerDataContext.DataContex;
+        DataContex dataContex = new DataContex();
         public List<Agreement> getall()
         {
-            return dataContex.AgreementsList;
+            return dataContex.loadAgreements();
         }
 
         public Agreement getById(int id)
         {
-            return dataContex.AgreementsList.Where(a => a.Id == id).FirstOrDefault();
+            var agreements = dataContex.loadAgreements();
+            return agreements.Where(a => a.Id == id).FirstOrDefault();
         }
 
         public bool add(Agreement agreement)
         {
             if (agreement == null)
                 return false;
-            dataContex.AgreementsList.Add(agreement);
-            return true;
+            var agreements = dataContex.loadAgreements();
+            agreements.Add(agreement);
+            return dataContex.saveAgreements(agreements);
         }
 
         public bool update(int id, Agreement agreement)
         {
-
-            for (int i = 0; i < dataContex.AgreementsList.Count; i++)
+            var agreements = dataContex.loadAgreements();
+            for (int i = 0; i < agreements.Count; i++)
             {
-                if (dataContex.AgreementsList[i].Id == id)
+                if (agreements[i].Id == id)
                 {
-                    dataContex.AgreementsList[i].copy(agreement);
-                    return true;
-
+                    agreements[i].copy(agreement);
+                    return dataContex.saveAgreements(agreements);
                 }
-
             }
             return false;
         }
 
         public bool delete(int id)
         {
-            if (getById(id) != null)
-            {
-                dataContex.AgreementsList.Remove(getById(id));
-                return true;
-            }
-            return false;
+            var agreements = dataContex.loadAgreements();
+            int removedCount = agreements.RemoveAll(d => d.Id == id);
+            if (removedCount == 0)
+                return false;
+            return dataContex.saveAgreements(agreements);
 
         }
     }

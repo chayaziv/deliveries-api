@@ -1,36 +1,110 @@
-﻿namespace deliveriesCompany.Entities
+﻿using CsvHelper;
+using System.Globalization;
+using System.IO;
+
+namespace deliveriesCompany.Entities
 {
     public class DataContex
     {
+        ///readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "Data", "deliverymen.csv");
 
-        public List<Agreement> AgreementsList { get; set; } = new List<Agreement>()
+        readonly string _filePath = "C:\\Users\\User\\Documents\\year2\\net core\\homework\\deliveryCompany\\deliveriesCompany\\Data\\";
+        public List<DeliveryMan> loadDeliveryMen()
         {
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-        };
+            string path = Path.Combine(_filePath, "deliverymen.csv");
 
-        public List<Company> CompaniesList { get; set; } = new List<Company>()
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var dlist = csv.GetRecords<DeliveryMan>().ToList();
+            return dlist;
+        }
+        public bool saveDeliveryMen(List<DeliveryMan> deliveryMen)
         {
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
-                ,ContactPersonMail="aa@gmail.com"}
-        };
-        public List<DeliveryMan> deliveryMenList = new List<DeliveryMan>()
+            try
+            {
+                string path = Path.Combine(_filePath, "deliverymen.csv");
+                using var writer = new StreamWriter(path);
+                using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);              
+                csv.WriteRecords(deliveryMen);
+                return true;
+            }
+            catch (Exception e )
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public List<Agreement> loadAgreements()
         {
-            new DeliveryMan(){ IdNumber="2156148555",PhoneNumber="055454878"},
-            new DeliveryMan(){ IdNumber="2565959512",PhoneNumber="055454878"},
-            new DeliveryMan(){ IdNumber="3453617717",PhoneNumber="055454878"},
-        };
-        public List<Sending> SendingsList { get; set; } = new List<Sending>()
+           
+            string path = Path.Combine(_filePath, "agreements.csv");
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            return csv.GetRecords<Agreement>().ToList();
+        }
+        public bool saveAgreements(List<Agreement> agreements)
         {
-            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
-            new Sending() {DeliveryManId=2,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
-            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.Ready}
-        };
+            try
+            {
+                string path = Path.Combine(_filePath, "agreements.csv");
+                using var writer = new StreamWriter(path);
+                using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                csv.WriteRecords(agreements);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine( e.Message);
+                return false;
+            }
+        }
+
+        public List<Company> loadCompanies()
+        {
+            string path = Path.Combine(_filePath, "companies.csv");
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            return csv.GetRecords<Company>().ToList();
+        }
+        public bool saveCompanies(List<Company> companies)
+        {
+            try
+            {
+                string path = Path.Combine(_filePath, "companies.csv");
+                using var writer = new StreamWriter(path);
+                using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                csv.WriteRecords(companies);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message  );
+                return false;
+            }
+        }   
+        public List<Sending> loadSendings()
+        {
+            string path = Path.Combine(_filePath, "sendings.csv");
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            return csv.GetRecords<Sending>().ToList();
+        }   
+        public bool saveSendings(List<Sending> sendings)
+        {
+            try
+            {
+                string path = Path.Combine(_filePath, "sendings.csv");
+                using var writer = new StreamWriter(path);
+                using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                csv.WriteRecords(sendings);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
     }
 }

@@ -5,30 +5,33 @@ namespace deliveriesCompany.Services
     public class CompanyService
     {
 
-       DataContex dataContex=ManagerDataContext.DataContex;
+        DataContex dataContex = new DataContex();
         public List<Company> getAll()
         {
-            return dataContex.CompaniesList;
+            return dataContex.loadCompanies();
         }
         public Company getById(int id)
         {
-            return dataContex.CompaniesList.Where((c) => c.Id == id).FirstOrDefault();
+            var companies=dataContex.loadCompanies();
+            return companies.Where((c) => c.Id == id).FirstOrDefault();
         }
         public bool add(Company company)
-        {     if(company == null)    
+        {
+            if (company == null)
                 return false;
-            dataContex.CompaniesList.Add(company);
-            return true;
+            var companies = dataContex.loadCompanies();
+            companies.Add(company);
+            return dataContex.saveCompanies(companies);
         }
         public bool update(int id, Company company)
         {
-           
-            for (int i = 0; i < dataContex.CompaniesList.Count; i++)
+            var companies = dataContex.loadCompanies();
+            for (int i = 0; i < companies.Count; i++)
             {
-                if (dataContex.CompaniesList[i].Id == id)
+                if (companies[i].Id == id)
                 {
-                    dataContex.CompaniesList[i] .copy(company);
-                    return true;
+                    companies[i].copy(company);
+                    return dataContex.saveCompanies(companies);
                 }
             }
             return false;
@@ -37,12 +40,11 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            if(getById(id) != null)
-            {
-                dataContex.CompaniesList.Remove(getById(id));
-                return true;
-            }
-           return false;
+            var companies = dataContex.loadCompanies();
+            int removedCount = companies.RemoveAll(d => d.Id == id);
+            if (removedCount == 0)
+                return false;
+            return dataContex.saveCompanies(companies);
         }
     }
 }
