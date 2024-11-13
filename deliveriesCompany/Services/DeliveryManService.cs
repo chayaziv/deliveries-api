@@ -5,17 +5,22 @@ namespace deliveriesCompany.Services
     public class DeliveryManService
     {
 
-        DataContex dataContex = new DataContex();
+       readonly IDataContext dataContext;
+
+        public DeliveryManService(IDataContext dataContext)
+        {
+            this.dataContext = dataContext;
+        }
 
         public List<DeliveryMan> getall()
         {
-            var deliveryMen=dataContex.loadDeliveryMen();
+            var deliveryMen=dataContext.loadDeliveryMen();
             return deliveryMen;
         }
 
         public DeliveryMan getById(int id)
         {
-            var deliveryMen = dataContex.loadDeliveryMen();
+            var deliveryMen = dataContext.loadDeliveryMen();
             return deliveryMen.Where(d => d.Id == id).FirstOrDefault();
         }
 
@@ -27,40 +32,42 @@ namespace deliveriesCompany.Services
                 return false;
             if (deliveryMan.IdNumber != null && !IsValidIdentityNumber(deliveryMan.IdNumber))
                 return false;
-            var deliveryMen = dataContex.loadDeliveryMen();
+            var deliveryMen = dataContext.loadDeliveryMen();
             deliveryMen.Add(deliveryMan);
-            return dataContex.saveDeliveryMen(deliveryMen);
+            return dataContext.saveDeliveryMen(deliveryMen);
         }
 
         public bool update(int id, DeliveryMan deliveryMan)
         {
-            var deliveryMen = dataContex.loadDeliveryMen();
+            var deliveryMen = dataContext.loadDeliveryMen();
             for (int i = 0; i < deliveryMen.Count; i++)
             {
                 if (deliveryMen[i].Id == id)
                 {
                     deliveryMen[i].copy(deliveryMan);                   
-                    return dataContex.saveDeliveryMen(deliveryMen); ;
+                    return dataContext.saveDeliveryMen(deliveryMen); ;
                 }
             }
             return false;
         }
 
         public bool delete(int id)
-        {       
-            var deliveryMen = dataContex.loadDeliveryMen();          
+        {   
+            if(!isValidDelete(id))
+                return false;
+            var deliveryMen = dataContext.loadDeliveryMen();          
             int removedCount = deliveryMen.RemoveAll(d => d.Id == id);
             if (removedCount == 0)
                 return false;
-            return dataContex.saveDeliveryMen(deliveryMen);
+            return dataContext.saveDeliveryMen(deliveryMen);
         }
 
-        //public bool isValidDelete(int id)
-        //{
-        //    var deliveryMen = dataContex.loadDeliveryMen();
+        public bool isValidDelete(int id)
+        {
+            var sendings = dataContext.loadSendings();
 
-        //    return !dataContex.SendingsList.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
-        //}
+            return !sendings.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
+        }
         public static bool IsValidIdentityNumber(string id)
         {
             return id.Length == 9 && id.All(char.IsDigit) &&

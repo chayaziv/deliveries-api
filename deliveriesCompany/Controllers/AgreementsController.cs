@@ -10,7 +10,12 @@ namespace deliveriesCompany.Controllers
     [ApiController]
     public class AgreementsController : ControllerBase
     {
-        readonly AgreementService _agreementService = new AgreementService();
+        readonly AgreementService _agreementService;
+
+        public AgreementsController(AgreementService agreementService)
+        {
+            _agreementService = agreementService;
+        }
 
         [HttpGet]
         public ActionResult<List<Agreement>> Get()

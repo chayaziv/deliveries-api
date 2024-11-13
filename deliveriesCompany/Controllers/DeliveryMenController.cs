@@ -10,7 +10,12 @@ namespace deliveriesCompany.Controllers
     [ApiController]
     public class DeliveryMenController : ControllerBase
     {
-        readonly DeliveryManService _deliveryManService = new DeliveryManService();
+        readonly DeliveryManService _deliveryManService;
+
+        public DeliveryMenController(DeliveryManService deliveryManService)
+        {
+            _deliveryManService = deliveryManService;
+        }
 
         [HttpGet]
         public ActionResult< List<DeliveryMan>> Get()

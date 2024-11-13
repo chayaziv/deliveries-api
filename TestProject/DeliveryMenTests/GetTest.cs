@@ -1,5 +1,6 @@
 ﻿using deliveriesCompany.Controllers;
 using deliveriesCompany.Entities;
+using deliveriesCompany.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace TestProject.DeliveryMenTests
 {
     public class GetTest
     {
-        DeliveryMenController controller = new DeliveryMenController();
+        DeliveryMenController controller = new DeliveryMenController(new DeliveryManService(new FakeContext()));
         [Fact]
         public void ReturnOk_get_all()
         {
-            var count=ManagerDataContext.DataContex.deliveryMenList.Count;
+            var count=FakeContext.deliveryMenList.Count;
 
             var result = controller.Get();
 

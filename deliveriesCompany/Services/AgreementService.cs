@@ -5,7 +5,12 @@ namespace deliveriesCompany.Services
     public class AgreementService
     {
 
-        DataContex dataContex = new DataContex();
+       readonly IDataContext dataContex;
+
+        public AgreementService(IDataContext dataContext)
+        {
+            dataContex = dataContext;
+        }
         public List<Agreement> getall()
         {
             return dataContex.loadAgreements();

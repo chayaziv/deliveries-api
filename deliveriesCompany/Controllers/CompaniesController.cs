@@ -11,7 +11,12 @@ namespace deliveriesCompany.Controllers
     public class CompaniesController : ControllerBase
     {
 
-        readonly CompanyService _companyService = new CompanyService();
+        readonly CompanyService _companyService;
+
+        public CompaniesController(CompanyService companyService)
+        {
+            _companyService = companyService;
+        }
 
         [HttpGet]
         public ActionResult<List<Company>> Get()

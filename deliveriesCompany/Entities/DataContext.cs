@@ -4,7 +4,7 @@ using System.IO;
 
 namespace deliveriesCompany.Entities
 {
-    public class DataContex : IDataContext
+    public class DataContext : IDataContext
     {
        
         readonly string _filePath = "C:\\Users\\User\\Documents\\year2\\net core\\homework\\deliveryCompany\\deliveriesCompany\\Data\\";

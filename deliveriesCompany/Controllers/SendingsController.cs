@@ -11,7 +11,12 @@ namespace deliveriesCompany.Controllers
     public class SendingsController : ControllerBase
     {
 
-        readonly SendingService _sendingService = new SendingService();
+        readonly SendingService _sendingService;
+
+        public SendingsController(SendingService sendingService)
+        {
+            _sendingService = sendingService;
+        }
 
         [HttpGet]
         public ActionResult<List<Sending>> Get()

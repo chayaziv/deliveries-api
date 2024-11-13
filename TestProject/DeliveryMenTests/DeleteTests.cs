@@ -1,4 +1,5 @@
 ﻿using deliveriesCompany.Controllers;
+using deliveriesCompany.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,13 @@ namespace TestProject.DeliveryMenTests
     public class DeleteTests
     {
 
-        DeliveryMenController controller = new DeliveryMenController();
+        DeliveryMenController controller = new DeliveryMenController(new DeliveryManService(new FakeContext()));
+
         [Fact]
         public void ReturnsBadRequest_not_exit()
         {
             var id = 6;
-            
+
             var result = controller.Delete(id);
 
             Assert.IsType<BadRequestResult>(result);
@@ -25,7 +27,7 @@ namespace TestProject.DeliveryMenTests
         public void ReturnsBadRequest_not_valid()
         {
             var id = 1;
-            
+
             var result = controller.Delete(id);
 
             Assert.IsType<BadRequestResult>(result);

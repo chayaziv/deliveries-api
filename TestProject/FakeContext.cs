@@ -15,32 +15,32 @@ namespace TestProject
     {
         public static List<Agreement> AgreementsList { get; set; } = new List<Agreement>()
         {
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
-            new Agreement(){MinCountPackage=100},
+            new Agreement(){Id=1,MinCountPackage=100},
+            new Agreement(){Id=2,MinCountPackage=100},
+            new Agreement(){Id=3,MinCountPackage=100},
+            new Agreement(){Id=4,MinCountPackage=100},
         };
 
         public static List<Company> CompaniesList { get; set; } = new List<Company>()
         {
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){Id=1, StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){Id=2, StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"},
-            new Company(){ StartAgreementDate=new DateTime(2000,3,2)
+            new Company(){Id=3, StartAgreementDate=new DateTime(2000,3,2)
                 ,ContactPersonMail="aa@gmail.com"}
         };
         public static List<DeliveryMan> deliveryMenList = new List<DeliveryMan>()
         {
-            new DeliveryMan(){ IdNumber="2156148555",PhoneNumber="055454878"},
-            new DeliveryMan(){ IdNumber="2565959512",PhoneNumber="055454878"},
-            new DeliveryMan(){ IdNumber="3453617717",PhoneNumber="055454878"},
+            new DeliveryMan(){Id=1, IdNumber="2156148555",PhoneNumber="055454878"},
+            new DeliveryMan(){Id=2,  IdNumber="2565959512",PhoneNumber="055454878"},
+            new DeliveryMan(){Id=3,  IdNumber="3453617717",PhoneNumber="055454878"},
         };
         public static List<Sending> SendingsList { get; set; } = new List<Sending>()
         {
-            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
-            new Sending() {DeliveryManId=2,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
-            new Sending() {DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.Ready}
+            new Sending() {Id=1,DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
+            new Sending() {Id=2,DeliveryManId=2,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.OnWay},
+            new Sending() {Id=3,DeliveryManId=1,  Breakable = true, DestinationFloor = 2, CraneNeed = true ,Status=Status.Ready}
         };
 
         public List<DeliveryMan> loadDeliveryMen()

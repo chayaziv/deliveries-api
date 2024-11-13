@@ -1,5 +1,6 @@
 ﻿using deliveriesCompany.Controllers;
 using deliveriesCompany.Entities;
+using deliveriesCompany.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace TestProject.DeliveryMenTests
 {
     public class PutTests
     {
-        DeliveryMenController controller = new DeliveryMenController();
+        DeliveryMenController controller = new DeliveryMenController(new DeliveryManService(new FakeContext()));
         [Fact]
         public void ReturnsBadRequest_id_not_exit()
         {
