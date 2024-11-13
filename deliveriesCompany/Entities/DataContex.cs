@@ -4,10 +4,9 @@ using System.IO;
 
 namespace deliveriesCompany.Entities
 {
-    public class DataContex
+    public class DataContex : IDataContext
     {
-        ///readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "Data", "deliverymen.csv");
-
+       
         readonly string _filePath = "C:\\Users\\User\\Documents\\year2\\net core\\homework\\deliveryCompany\\deliveriesCompany\\Data\\";
         public List<DeliveryMan> loadDeliveryMen()
         {
@@ -101,10 +100,10 @@ namespace deliveriesCompany.Entities
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
 
+      
     }
 }
