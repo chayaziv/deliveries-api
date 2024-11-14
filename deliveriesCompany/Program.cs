@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<IDataContext,DataContext>();
+builder.Services.AddScoped(typeof( IDataContext<>),typeof( DataContext<>));
+builder.Services.AddScoped<IDataContext<DeliveryMan>, DataContext<DeliveryMan>>();
 builder.Services.AddScoped<AgreementService>();
 builder.Services.AddScoped<CompanyService>();
 builder.Services.AddScoped<DeliveryManService>();

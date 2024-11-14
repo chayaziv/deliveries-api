@@ -5,22 +5,22 @@ namespace deliveriesCompany.Services
     public class DeliveryManService
     {
 
-       readonly IDataContext dataContext;
-
-        public DeliveryManService(IDataContext dataContext)
+       readonly IDataContext<DeliveryMan> dataContext;
+        readonly string csvPath = "deliverymen.csv";
+        public DeliveryManService(IDataContext<DeliveryMan> dataContext)
         {
             this.dataContext = dataContext;
         }
 
         public List<DeliveryMan> getall()
         {
-            var deliveryMen=dataContext.loadDeliveryMen();
+            var deliveryMen=dataContext.loadData(csvPath);
             return deliveryMen;
         }
 
         public DeliveryMan getById(int id)
         {
-            var deliveryMen = dataContext.loadDeliveryMen();
+            var deliveryMen = dataContext.loadData(csvPath);
             return deliveryMen.Where(d => d.Id == id).FirstOrDefault();
         }
 
@@ -28,24 +28,24 @@ namespace deliveriesCompany.Services
         {
             if (deliveryMan == null)
                 return false;
-            if (deliveryMan.Email == null)
-                return false;
-            if (deliveryMan.IdNumber != null && !IsValidIdentityNumber(deliveryMan.IdNumber))
-                return false;
-            var deliveryMen = dataContext.loadDeliveryMen();
+            //if (deliveryMan.Email == null)
+            //    return false;
+            //if (deliveryMan.IdNumber != null && !IsValidIdentityNumber(deliveryMan.IdNumber))
+            //    return false;
+            var deliveryMen = dataContext.loadData(csvPath);
             deliveryMen.Add(deliveryMan);
-            return dataContext.saveDeliveryMen(deliveryMen);
+            return dataContext.saveData(deliveryMen, csvPath);
         }
 
         public bool update(int id, DeliveryMan deliveryMan)
         {
-            var deliveryMen = dataContext.loadDeliveryMen();
+            var deliveryMen = dataContext.loadData(csvPath);
             for (int i = 0; i < deliveryMen.Count; i++)
             {
                 if (deliveryMen[i].Id == id)
                 {
                     deliveryMen[i].copy(deliveryMan);                   
-                    return dataContext.saveDeliveryMen(deliveryMen); ;
+                    return dataContext.saveData(deliveryMen, csvPath); ;
                 }
             }
             return false;
@@ -53,21 +53,21 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {   
-            if(!isValidDelete(id))
-                return false;
-            var deliveryMen = dataContext.loadDeliveryMen();          
+            //if(!isValidDelete(id))
+            //    return false;
+            var deliveryMen = dataContext.loadData(csvPath);          
             int removedCount = deliveryMen.RemoveAll(d => d.Id == id);
             if (removedCount == 0)
                 return false;
-            return dataContext.saveDeliveryMen(deliveryMen);
+            return dataContext.saveData(deliveryMen, csvPath);
         }
 
-        public bool isValidDelete(int id)
-        {
-            var sendings = dataContext.loadSendings();
+        //public bool isValidDelete(int id)
+        //{
+        //    var sendings = dataContext.loadSendings();
 
-            return !sendings.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
-        }
+        //    return !sendings.Any((s) => s.DeliveryManId == id && s.Status == Status.OnWay);
+        //}
         public static bool IsValidIdentityNumber(string id)
         {
             return id.Length == 9 && id.All(char.IsDigit) &&

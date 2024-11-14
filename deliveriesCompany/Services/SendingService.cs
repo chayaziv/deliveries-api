@@ -4,21 +4,21 @@ namespace deliveriesCompany.Services
 {
     public class SendingService
     {
-       readonly IDataContext dataContext ;
-
-        public SendingService(IDataContext dataContext)
+       readonly IDataContext<Sending> dataContext ;
+        readonly string csvPath = "sendings.csv";
+        public SendingService(IDataContext<Sending> dataContext)
         {
             this.dataContext = dataContext;
         }
 
         public List<Sending> getAll()
         {
-            return dataContext.loadSendings();
+            return dataContext.loadData(csvPath);
         }
 
         public Sending getById(int id)
         {
-            var sendings=dataContext.loadSendings();
+            var sendings=dataContext.loadData(csvPath);
             return sendings.Where((s) => s.Id == id).FirstOrDefault<Sending>();
         }
 
@@ -26,21 +26,21 @@ namespace deliveriesCompany.Services
         {
             if (sending == null)
                 return false;
-            var sendings = dataContext.loadSendings();
+            var sendings = dataContext.loadData(csvPath);
             sendings.Add(sending);
-            dataContext.saveSendings(sendings);
+            dataContext.saveData(sendings, csvPath);
             return true;
         }
 
         public bool update(int id, Sending sending)
         {
-            var sendings = dataContext.loadSendings();
+            var sendings = dataContext.loadData(csvPath);
             for (int i = 0; i < sendings.Count; i++)
             {
                 if (sendings[i].Id == id)
                 {
                     sendings[i].copy(sending);
-                    dataContext.saveSendings(sendings);
+                    dataContext.saveData(sendings, csvPath);
                     return true;
 
                 }
@@ -50,11 +50,11 @@ namespace deliveriesCompany.Services
 
         public bool delete(int id)
         {
-            var sendings = dataContext.loadSendings();
+            var sendings = dataContext.loadData(csvPath);
             int removedCount = sendings.RemoveAll(d => d.Id == id);
             if (removedCount == 0)
                 return false;
-            return dataContext.saveSendings(sendings);
+            return dataContext.saveData(sendings, csvPath);
         }
     }
 }
