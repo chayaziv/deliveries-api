@@ -11,7 +11,7 @@ namespace DeliveriesCompany.Data
 {
     public class DataContext
     {
-        readonly string _filePath = "C:\\Users\\USER\\Documents\\year2\\net core\\DeliveriesCompany\\DeliveriesCompany.Data\\CsvFiles";
+        readonly string _filePath = "C:\\Users\\USER\\Documents\\year2\\net core\\homework\\deliveryCompany\\DeliveriesCompany.Data\\CsvFiles";
 
         public List<Company> companyList;
 
@@ -71,7 +71,7 @@ namespace DeliveriesCompany.Data
         {
             try
             {
-                string path = Path.Combine(_filePath, "sendings.csv");
+                string path = Path.Combine(_filePath, "deliverymen.csv");
                 using var writer = new StreamWriter(path);
                 using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
                 csv.WriteRecords(this.deliveryMenlist);
@@ -86,7 +86,7 @@ namespace DeliveriesCompany.Data
         {
             try
             {
-                string path = Path.Combine(_filePath, "companies.csv");
+                string path = Path.Combine(_filePath, "agreements.csv");
                 using var writer = new StreamWriter(path);
                 using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
                 csv.WriteRecords(this.agreementList);
