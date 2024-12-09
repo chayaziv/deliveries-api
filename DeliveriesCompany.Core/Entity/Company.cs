@@ -21,18 +21,38 @@ namespace DeliveriesCompany.Core.Entity
         public string ContactPersonMail { get; set; }
 
         public  DateTime StartAgreementDate { get; set; }
-       
 
-        public void copy(Company other)
+
+        //public void copy(Company other)
+        //{
+        //    AddressOfWarehouse = other.AddressOfWarehouse;
+        //    AgreementId = other.AgreementId;
+        //    ContactPersonName = other.ContactPersonName;
+        //    ContactPersonMail = other.ContactPersonMail;
+        //    ContactPersonPhon = other.ContactPersonPhon;
+        //    StartAgreementDate = other.StartAgreementDate;
+        //}
+        public void Copy(Company other)
         {
-            AddressOfWarehouse = other.AddressOfWarehouse;
-            AgreementId = other.AgreementId;
-            ContactPersonName = other.ContactPersonName;
-            ContactPersonMail = other.ContactPersonMail;
-            ContactPersonPhon = other.ContactPersonPhon;
-            StartAgreementDate = other.StartAgreementDate;
+            if (other == null)
+                throw new ArgumentNullException(nameof(other));
+
+            var properties = typeof(Company).GetProperties();
+            foreach (var property in properties)
+            {
+                if (property.Name == nameof(Id))
+                    continue;
+                if (property.CanRead && property.CanWrite)
+                {
+                    var value = property.GetValue(other);
+                    if (value != null)
+                    {
+                        property.SetValue(this, value);
+                    }
+                }
+            }
         }
-        
+
 
     }
 }

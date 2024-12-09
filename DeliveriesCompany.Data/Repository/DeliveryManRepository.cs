@@ -43,7 +43,7 @@ namespace DeliveriesCompany.Data.Repository
             {
                 if (_context.deliveryMenlist[i].Id==id)
                 {
-                    _context.deliveryMenlist[i].copy(dlv); 
+                    _context.deliveryMenlist[i].Copy(dlv); 
                     return _context.SaveData() ;
                 }
             }

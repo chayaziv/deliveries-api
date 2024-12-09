@@ -36,7 +36,7 @@ namespace DeliveriesCompany.Data.Repository
             {
                 if (_context.agreementList[i].Id == id)
                 {
-                    _context.agreementList[i].copy(arg);
+                    _context.agreementList[i].Copy(arg);
                     return _context.SaveData();
                 }
 
