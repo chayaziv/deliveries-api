@@ -37,25 +37,16 @@ namespace DeliveriesCompany.Data.Repository
                 return null;
             }
         }
-        public bool Delete(int id)
+        public bool Delete(Company itemToRemove)
         {
-            int removedCount = _context.companyList.RemoveAll(d => d.Id == id);
-            if (removedCount == 0)
-                return false;
-            return _context.SaveData();
+            _context.companyList.Remove(itemToRemove);
+            return true;
         }
-        public bool Update(int id, Company com)
+        public Company Update(int id, Company company)
         {
-            for (int i = 0; i < _context.companyList.Count; i++)
-            {
-                if (_context.companyList[i].Id == id)
-                {
-                    _context.companyList[i].Copy(com);
-                    return _context.SaveData();
+            _context.companyList.Find(id).Copy(company);
+            return company;
 
-                }                   
-            }
-            return false;
         }
     }
 }

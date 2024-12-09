@@ -37,7 +37,7 @@ namespace DeliveriesCompany.Data.Repository
                 return null;
             }
         }
-        public bool Delete(int id)
+        public bool Delete(int idToRemove)
         {
             int removedCount = _context.sendingList.RemoveAll(d => d.Id == id);
             if (removedCount == 0)

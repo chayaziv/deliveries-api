@@ -31,26 +31,16 @@ namespace DeliveriesCompany.Data.Repository
                 return null;
             }
         }
-        public bool Delete(int id)
+        public bool Delete(Agreement itemToRemove)
         {
-            _context.agreementList.Remove()
-            int removedCount = _context.agreementList.RemoveAll(d => d.Id == id);
-            if (removedCount == 0)
-                return false;
-            return _context.SaveData();
+            _context.agreementList.Remove(itemToRemove);
+            return true;
         }
-        public bool Update(int id, Agreement arg)
+        public Agreement Update(int id, Agreement arg)
         {
-            for (int i = 0; i < _context.agreementList.Count; i++)
-            {
-                if (_context.agreementList[i].Id == id)
-                {
-                    _context.agreementList[i].Copy(arg);
-                    return _context.SaveData();
-                }
+            _context.agreementList.Find(id).Copy(arg);
+            return arg;
 
-            }
-            return false;
         }
     }
 }

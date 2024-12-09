@@ -39,7 +39,7 @@ namespace DeliveriesCompany.Data.Repository
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(int idToRemove)
         {
             int removedCount = _context.deliveryMenlist.RemoveAll(d => d.Id == id);
             if (removedCount == 0)

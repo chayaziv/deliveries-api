@@ -13,11 +13,11 @@ namespace DeliveriesCompany.Core.IRepositories
 
         public T GetById(int id);
 
-        public bool Add(T val);
+        public T Add(T val);
 
-        public bool Update(int id, T val);
+        public T Update(int id, T val);
 
-        public bool Delete(int id);
+        public bool Delete(T id);
 
     }
 }
