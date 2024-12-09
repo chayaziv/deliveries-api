@@ -18,11 +18,11 @@ namespace DeliveriesCompany.Data.Repository
         }
         public List<Sending> GetList()
         {
-            return _context.sendingList;
+            return _context.sendingList.ToList();
         }
         public Sending GetById(int id)
-        {
-            return _context.sendingList.Where(d => d.Id == id).FirstOrDefault();
+        {          
+            return _context.sendingList.Find(id);
         }
         public Sending Add(Sending send)
         {

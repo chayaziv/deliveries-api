@@ -18,11 +18,12 @@ namespace DeliveriesCompany.Data.Repository
 
         public List<DeliveryMan> GetList()
         {
-            return _context.deliveryMenlist;
+            return _context.deliveryMenlist.ToList();
         }
         public DeliveryMan GetById(int id)
         {
-            return _context.deliveryMenlist.Where(d => d.Id == id).FirstOrDefault();
+            return _context.deliveryMenlist.Find(id);
+        
         }
         public DeliveryMan Add(DeliveryMan dlv)
         {

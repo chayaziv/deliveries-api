@@ -16,7 +16,7 @@ namespace DeliveriesCompany.Data.Repository
         }
         public Agreement GetById(int id)
         {
-            return _context.agreementList.Where(a => a.Id == id).FirstOrDefault();
+            return _context.agreementList.Find(id);
         }
         public Agreement Add(Agreement arg)
         {
