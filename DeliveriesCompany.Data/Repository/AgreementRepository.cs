@@ -12,19 +12,28 @@ namespace DeliveriesCompany.Data.Repository
         }
         public List<Agreement> GetList()
         {
-            return _context.agreementList;
+            return _context.agreementList.ToList();
         }
         public Agreement GetById(int id)
         {
             return _context.agreementList.Where(a => a.Id == id).FirstOrDefault();
         }
-        public bool Add(Agreement arg)
+        public Agreement Add(Agreement arg)
         {
-            _context.agreementList.Add(arg);
-            return _context.SaveData();
+            try
+            {
+                _context.agreementList.Add(arg);
+                _context.SaveChanges();
+                return arg;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         public bool Delete(int id)
         {
+            _context.agreementList.Remove()
             int removedCount = _context.agreementList.RemoveAll(d => d.Id == id);
             if (removedCount == 0)
                 return false;

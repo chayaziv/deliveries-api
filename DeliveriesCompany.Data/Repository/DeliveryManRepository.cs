@@ -24,10 +24,18 @@ namespace DeliveriesCompany.Data.Repository
         {
             return _context.deliveryMenlist.Where(d => d.Id == id).FirstOrDefault();
         }
-        public bool Add(DeliveryMan dlv)
+        public DeliveryMan Add(DeliveryMan dlv)
         {
-            _context.deliveryMenlist.Add(dlv);
-            return _context.SaveData();
+            try
+            {
+                _context.deliveryMenlist.Add(dlv);
+                _context.SaveChanges();
+                return dlv;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public bool Delete(int id)
