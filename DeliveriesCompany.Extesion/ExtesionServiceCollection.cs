@@ -4,6 +4,7 @@ using DeliveriesCompany.Core.Iservices;
 using DeliveriesCompany.Data;
 using DeliveriesCompany.Data.Repository;
 using DeliveriesCompany.Service.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 
@@ -22,8 +23,9 @@ namespace DeliveriesCompany.Extesion
             s.AddScoped<IRepository<DeliveryMan>, DeliveryManRepository>();
             s.AddScoped<IRepository<Company>, CompanyRepository>();
             s.AddScoped<IRepository<Sending>, SendingRepository>();     
-            
-            s.AddSingleton<DataContext>();
+        
+            s.AddDbContext<DataContext>();
+            // s.AddSingleton<DataContext>();
         }
 
     }
