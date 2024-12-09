@@ -4,3 +4,4 @@ Id,Type,PricePerPackage,MinCountPackage,Distribution
 4,Weekly,43.56,46,regional
 5,Monthly,86.95,34,global
 6,Yearly,70.39,10,earthly
+9,Weekly,0,0,earthly
