@@ -19,13 +19,6 @@ namespace DeliveriesCompany.Core.Entity
 
         public Distribution Distribution { get; set; }
 
-        //public void copy (Agreement other)
-        //{
-        //    Type = other.Type;
-        //    PricePerPackage = other.PricePerPackage;
-        //    MinCountPackage = other.MinCountPackage;
-        //    Distribution = other.Distribution;
-        //}
         public void Copy(Agreement other)
         {
             if (other == null)

@@ -1,5 +1,5 @@
 Id,Type,PricePerPackage,MinCountPackage,Distribution
-1,Weekly,0,0,global
+1,Weekly,0,0,regional
 3,Monthly,18.62,34,regional
 4,Weekly,43.56,46,regional
 5,Monthly,86.95,34,global

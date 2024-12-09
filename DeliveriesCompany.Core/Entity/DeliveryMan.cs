@@ -32,17 +32,6 @@ namespace DeliveriesCompany.Core.Entity
         public double Salary { get; set; }
         public double Bonus { get; set; }
 
-
-
-        //public void copy(DeliveryMan other)
-        //{
-        //    Name=other.Name;
-        //    PhoneNumber=other.PhoneNumber;
-        //    Email=other.Email;
-        //    PreferedArea=other.PreferedArea;
-        //    Vehicle=other.Vehicle;
-        //    Salary=other.Salary;
-        //}
         public void Copy(DeliveryMan other)
         {
             if (other == null)

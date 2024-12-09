@@ -22,16 +22,6 @@ namespace DeliveriesCompany.Core.Entity
 
         public  DateTime StartAgreementDate { get; set; }
 
-
-        //public void copy(Company other)
-        //{
-        //    AddressOfWarehouse = other.AddressOfWarehouse;
-        //    AgreementId = other.AgreementId;
-        //    ContactPersonName = other.ContactPersonName;
-        //    ContactPersonMail = other.ContactPersonMail;
-        //    ContactPersonPhon = other.ContactPersonPhon;
-        //    StartAgreementDate = other.StartAgreementDate;
-        //}
         public void Copy(Company other)
         {
             if (other == null)
