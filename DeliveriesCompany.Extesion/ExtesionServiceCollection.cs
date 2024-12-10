@@ -6,6 +6,7 @@ using DeliveriesCompany.Data.Repository;
 using DeliveriesCompany.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Runtime.CompilerServices;
 
 namespace DeliveriesCompany.Extesion
@@ -22,10 +23,15 @@ namespace DeliveriesCompany.Extesion
             s.AddScoped<IRepository<Agreement>, AgreementRepository>();
             s.AddScoped<IRepository<DeliveryMan>, DeliveryManRepository>();
             s.AddScoped<IRepository<Company>, CompanyRepository>();
-            s.AddScoped<IRepository<Sending>, SendingRepository>();     
-        
-            s.AddDbContext<DataContext>();
+            s.AddScoped<IRepository<Sending>, SendingRepository>();
+
+            s.AddDbContext<DataContext>(optionsBuilder =>
+            {
+                optionsBuilder.UseSqlServer("Data Source = DESKTOP-13C4MS2; Initial Catalog = Deliveries_DB; Integrated Security = true; ");
+               
+            });
             // s.AddSingleton<DataContext>();
+            
         }
 
     }

@@ -35,12 +35,12 @@ namespace DeliveriesCompany.Service.Services
             if (agreement == null)
                 return false;
            
-            return _agreementRepository.Add(agreement);
+            return _agreementRepository.Add(agreement)!=null;
         }
 
         public bool update(int id, Agreement agreement)
         {          
-            return _agreementRepository.Update(id, agreement);
+            return _agreementRepository.Update(id, agreement) != null;
         }
 
         public bool delete(int id)

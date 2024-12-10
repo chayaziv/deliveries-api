@@ -34,11 +34,13 @@ namespace DeliveriesCompany.Data.Repository
         public bool Delete(Agreement itemToRemove)
         {
             _context.agreementList.Remove(itemToRemove);
+            _context.SaveChanges();
             return true;
         }
         public Agreement Update(int id, Agreement arg)
         {
             _context.agreementList.Find(id).Copy(arg);
+            _context.SaveChanges();
             return arg;
 
         }

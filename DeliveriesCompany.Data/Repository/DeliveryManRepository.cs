@@ -39,24 +39,18 @@ namespace DeliveriesCompany.Data.Repository
             }
         }
 
-        public bool Delete(int idToRemove)
+        public bool Delete(DeliveryMan itemToRemove)
         {
-            int removedCount = _context.deliveryMenlist.RemoveAll(d => d.Id == id);
-            if (removedCount == 0)
-                return false;
-            return _context.SaveData();
+            _context.deliveryMenlist.Remove(itemToRemove);
+            _context.SaveChanges();
+            return true;
         }
-        public bool Update(int id, DeliveryMan dlv)
+        public DeliveryMan Update(int id, DeliveryMan deliveryMan)
         {
-            for (int i = 0; i < _context.deliveryMenlist.Count; i++)
-            {
-                if (_context.deliveryMenlist[i].Id==id)
-                {
-                    _context.deliveryMenlist[i].Copy(dlv); 
-                    return _context.SaveData() ;
-                }
-            }
-            return false;
+            _context.deliveryMenlist.Find(id).Copy(deliveryMan);
+            _context.SaveChanges();
+            return deliveryMan;
+
         }
     }
 }

@@ -40,11 +40,13 @@ namespace DeliveriesCompany.Data.Repository
         public bool Delete(Company itemToRemove)
         {
             _context.companyList.Remove(itemToRemove);
+            _context.SaveChanges();
             return true;
         }
         public Company Update(int id, Company company)
         {
             _context.companyList.Find(id).Copy(company);
+            _context.SaveChanges();
             return company;
 
         }
