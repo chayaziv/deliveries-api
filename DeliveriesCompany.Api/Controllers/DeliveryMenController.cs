@@ -34,19 +34,21 @@ namespace DeliveriesCompany.Api.Controllers
 
         }
         [HttpPost]
-        public ActionResult Post([FromBody] DeliveryMan deliveryMan)
+        public ActionResult<DeliveryMan> Post([FromBody] DeliveryMan deliveryMan)
         {
-           if( _deliveryManService.add(deliveryMan))
-                return Ok();
-           return BadRequest();
+            DeliveryMan deliveryManAdd = _deliveryManService.add(deliveryMan);
+           if (deliveryManAdd!=null )
+                return Ok(deliveryManAdd);
+           return BadRequest(deliveryManAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] DeliveryMan deliveryMan)
+        public ActionResult<DeliveryMan> Put(int id, [FromBody] DeliveryMan deliveryMan)
         {
-            if (!_deliveryManService.update(id, deliveryMan))
-                return NotFound();
-            return Ok();
+            DeliveryMan deliveryManUpdate = _deliveryManService.update(id, deliveryMan);
+            if (deliveryManUpdate!=null)
+                return Ok(deliveryManUpdate);
+            return BadRequest(deliveryManUpdate);
         }
 
         [HttpDelete("{id}")]

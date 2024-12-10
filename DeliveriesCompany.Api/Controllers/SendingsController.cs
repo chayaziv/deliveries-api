@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DeliveriesCompany.Api.Controllers
-{ 
+{
     [Route("DeliveryCompany/[controller]")]
     [ApiController]
     public class SendingsController : ControllerBase
@@ -34,19 +34,22 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] Sending sending)
+        public ActionResult<Sending> Post([FromBody] Sending sending)
         {
-            if (_sendingService.add(sending))
-                return Ok();
-            return BadRequest();
+            Sending sendingAdd = _sendingService.add(sending);
+            if (sendingAdd != null)
+                return Ok(sendingAdd);
+            return BadRequest(sendingAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Sending sending)
+        public ActionResult<Sending> Put(int id, [FromBody] Sending sending)
         {
-            if (!_sendingService.update(id, sending))
-                return NotFound();
-            return Ok();
+            Sending sendingUpdate = _sendingService.update(id, sending);
+            if (sendingUpdate != null)
+                return Ok(sendingUpdate);
+            return NotFound(sendingUpdate);
+
         }
 
         [HttpDelete("{id}")]

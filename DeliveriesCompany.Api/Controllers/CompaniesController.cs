@@ -35,20 +35,22 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] Company company)
+        public ActionResult<Company> Post([FromBody] Company company)
         {
-            if (_companyService.add(company))
-                return Ok();
-            return BadRequest();
+            Company companyAdd = _companyService.add(company);
+            if (companyAdd!=null)
+                return Ok(companyAdd);
+            return BadRequest(companyAdd);
         }
 
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Company company)
+        public ActionResult<Company> Put(int id, [FromBody] Company company)
         {
-            if (!_companyService.update(id, company))
-                return NotFound();
-            return Ok();
+            Company companyUpdate = _companyService.update(id, company);
+            if (companyUpdate!= null)
+                return Ok(companyUpdate);
+            return BadRequest(companyUpdate);
         }
 
 

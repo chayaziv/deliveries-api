@@ -33,20 +33,23 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] Agreement agreement)
+        public ActionResult<Agreement> Post([FromBody] Agreement agreement)
         {
-            if (_agreementService.add(agreement))
-                return Ok();
-            return BadRequest();
+            Agreement agreementAdd = _agreementService.add(agreement);
+            if (agreementAdd != null)
+                return Ok(agreementAdd);
+            return BadRequest(agreementAdd);
         }
 
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Agreement agreement)
+        public ActionResult<Agreement> Put(int id, [FromBody] Agreement agreement)
         {
-            if (!_agreementService.update(id, agreement))
-                return NotFound();
-            return Ok();
+            Agreement agreementUpdate = _agreementService.update(id, agreement);
+            if (agreementUpdate != null)
+                return Ok(agreementUpdate);
+            return NotFound(agreementUpdate);
+
         }
 
 
