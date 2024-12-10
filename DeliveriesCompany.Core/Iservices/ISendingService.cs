@@ -13,9 +13,9 @@ namespace DeliveriesCompany.Core.Iservices
 
         public Sending getById(int id);
 
-        public bool add(Sending sending);
+        public Sending add(Sending sending);
 
-        public bool update(int id, Sending sending);
+        public Sending update(int id, Sending sending);
 
         public bool delete(int id);
     }

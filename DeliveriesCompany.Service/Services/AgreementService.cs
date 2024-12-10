@@ -30,23 +30,23 @@ namespace DeliveriesCompany.Service.Services
             return _agreementRepository.GetById(id);
         }
 
-        public bool add(Agreement agreement)
+        public Agreement add(Agreement agreement)
         {
             if (agreement == null)
-                return false;
+                return null;
            
-            return _agreementRepository.Add(agreement)!=null;
+            return _agreementRepository.Add(agreement);
         }
 
-        public bool update(int id, Agreement agreement)
+        public Agreement update(int id, Agreement agreement)
         {          
-            return _agreementRepository.Update(id, agreement) != null;
+            return _agreementRepository.Update(id, agreement);
         }
 
         public bool delete(int id)
         {
-           
-            return _agreementRepository.Delete(id);
+           Agreement itemToDelete= _agreementRepository.GetById(id);
+            return _agreementRepository.Delete(itemToDelete);
         }
     }
 }

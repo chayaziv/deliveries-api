@@ -15,9 +15,9 @@ namespace DeliveriesCompany.Core.Iservices
 
         public Company getById(int id);
 
-        public bool add(Company company);
+        public Company add(Company company);
 
-        public bool update(int id, Company company);
+        public Company update(int id, Company company);
 
 
         public bool delete(int id);

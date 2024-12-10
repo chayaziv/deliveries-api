@@ -32,24 +32,24 @@ namespace DeliveriesCompany.Service.Services
             return _deliveryManRepository.GetById(id);
         }
 
-        public bool add(DeliveryMan deliveryMan)
+        public DeliveryMan add(DeliveryMan deliveryMan)
         {
             if (deliveryMan == null)
-                return false;
+                return null;
                    
             return _deliveryManRepository.Add(deliveryMan);
         }
 
-        public bool update(int id, DeliveryMan deliveryMan)
+        public DeliveryMan update(int id, DeliveryMan deliveryMan)
         {
             
             return _deliveryManRepository.Update(id, deliveryMan);
         }
 
         public bool delete(int id)
-        {   
-            
-            return _deliveryManRepository.Delete(id);
+        {
+            DeliveryMan itemToDelete = _deliveryManRepository.GetById(id);
+            return _deliveryManRepository.Delete(itemToDelete);
         }
 
         //public bool isValidDelete(int id)

@@ -13,9 +13,9 @@ namespace DeliveriesCompany.Core.Iservices
 
         public Agreement getById(int id);
 
-        public bool add(Agreement agreement);
+        public Agreement add(Agreement agreement);
 
-        public bool update(int id, Agreement agreement);
+        public Agreement update(int id, Agreement agreement);
 
         public bool delete(int id);
     }

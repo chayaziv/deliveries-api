@@ -28,20 +28,21 @@ namespace DeliveriesCompany.Service.Services
             
             return _companyRepository.GetById(id);
         }
-        public bool add(Company company)
+        public Company add(Company company)
         {
             if (company == null)
-             return false;            
+             return null;            
             return _companyRepository.Add(company);
         }
-        public bool update(int id, Company company)
+        public Company update(int id, Company company)
         {          
             return _companyRepository.Update(id, company);
         }
 
         public bool delete(int id)
-        {           
-            return _companyRepository.Delete(id);
+        {   
+            Company itemToDelete = _companyRepository.GetById(id);
+            return _companyRepository.Delete(itemToDelete);
         }
     }
 }

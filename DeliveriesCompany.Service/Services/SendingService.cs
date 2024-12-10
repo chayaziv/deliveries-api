@@ -32,13 +32,13 @@ namespace DeliveriesCompany.Service.Services
             return _sendingRepository.GetById(id);
         }
 
-        public bool add(Sending sending)
+        public Sending add(Sending sending)
         {
            
             return _sendingRepository.Add(sending);
         }
 
-        public bool update(int id, Sending sending)
+        public Sending update(int id, Sending sending)
         {
             
             return _sendingRepository.Update(id, sending);
@@ -46,8 +46,8 @@ namespace DeliveriesCompany.Service.Services
 
         public bool delete(int id)
         {
-            
-            return _sendingRepository.Delete(id);
+            Sending itemToDelete = _sendingRepository.GetById(id);
+            return _sendingRepository.Delete(itemToDelete);
         }
     }
 }

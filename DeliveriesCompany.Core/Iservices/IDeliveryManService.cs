@@ -14,9 +14,9 @@ namespace DeliveriesCompany.Core.Iservices
 
         public DeliveryMan getById(int id);
 
-        public bool add(DeliveryMan deliveryMan);
+        public DeliveryMan add(DeliveryMan deliveryMan);
 
-        public bool update(int id, DeliveryMan deliveryMan);
+        public DeliveryMan update(int id, DeliveryMan deliveryMan);
 
         public bool delete(int id);
     }
