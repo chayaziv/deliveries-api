@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace DeliveriesCompany.Core.Entity
     [Table("DeliveryMan")]
     public class DeliveryMan
     {
+        [Key]
         public int Id { get; set; }
         public string IdNumber { get; set; }
 

@@ -12,17 +12,17 @@ namespace DeliveriesCompany.Data.Repository
         }
         public List<Agreement> GetList()
         {
-            return _context.agreementList.ToList();
+            return _context.Agreements.ToList();
         }
         public Agreement GetById(int id)
         {
-            return _context.agreementList.Find(id);
+            return _context.Agreements.Find(id);
         }
         public Agreement Add(Agreement arg)
         {
             try
             {
-                _context.agreementList.Add(arg);
+                _context.Agreements.Add(arg);
                 _context.SaveChanges();
                 return arg;
             }
@@ -33,13 +33,13 @@ namespace DeliveriesCompany.Data.Repository
         }
         public bool Delete(Agreement itemToRemove)
         {
-            _context.agreementList.Remove(itemToRemove);
+            _context.Agreements.Remove(itemToRemove);
             _context.SaveChanges();
             return true;
         }
         public Agreement Update(int id, Agreement arg)
         {
-            _context.agreementList.Find(id).Copy(arg);
+            _context.Agreements.Find(id).Copy(arg);
             _context.SaveChanges();
             return arg;
 

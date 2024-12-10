@@ -13,13 +13,13 @@ namespace DeliveriesCompany.Data
     public class DataContext : DbContext
     {
        
-        public DbSet<Company> companyList;
+        public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Sending> sendingList;
+        public DbSet<Sending> Sendings { get; set; }
 
-        public DbSet<Agreement> agreementList;
+        public DbSet<Agreement> Agreements { get; set; }
 
-        public DbSet<DeliveryMan> deliveryMenlist;
+        public DbSet<DeliveryMan> DeliveryMen { get; set; }
 
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)

@@ -18,18 +18,18 @@ namespace DeliveriesCompany.Data.Repository
 
         public List<DeliveryMan> GetList()
         {
-            return _context.deliveryMenlist.ToList();
+            return _context.DeliveryMen.ToList();
         }
         public DeliveryMan GetById(int id)
         {
-            return _context.deliveryMenlist.Find(id);
+            return _context.DeliveryMen.Find(id);
         
         }
         public DeliveryMan Add(DeliveryMan dlv)
         {
             try
             {
-                _context.deliveryMenlist.Add(dlv);
+                _context.DeliveryMen.Add(dlv);
                 _context.SaveChanges();
                 return dlv;
             }
@@ -41,13 +41,13 @@ namespace DeliveriesCompany.Data.Repository
 
         public bool Delete(DeliveryMan itemToRemove)
         {
-            _context.deliveryMenlist.Remove(itemToRemove);
+            _context.DeliveryMen.Remove(itemToRemove);
             _context.SaveChanges();
             return true;
         }
         public DeliveryMan Update(int id, DeliveryMan deliveryMan)
         {
-            _context.deliveryMenlist.Find(id).Copy(deliveryMan);
+            _context.DeliveryMen.Find(id).Copy(deliveryMan);
             _context.SaveChanges();
             return deliveryMan;
 

@@ -18,17 +18,17 @@ namespace DeliveriesCompany.Data.Repository
 
         public List<Company> GetList()
         {
-            return _context.companyList.ToList();
+            return _context.Companies.ToList();
         }
         public Company GetById(int id)
         {
-            return _context.companyList.Find(id);
+            return _context.Companies.Find(id);
         }
         public Company Add(Company com)
         {
             try
             {
-                _context.companyList.Add(com);
+                _context.Companies.Add(com);
                 _context.SaveChanges();
                 return com;
             }
@@ -39,13 +39,13 @@ namespace DeliveriesCompany.Data.Repository
         }
         public bool Delete(Company itemToRemove)
         {
-            _context.companyList.Remove(itemToRemove);
+            _context.Companies.Remove(itemToRemove);
             _context.SaveChanges();
             return true;
         }
         public Company Update(int id, Company company)
         {
-            _context.companyList.Find(id).Copy(company);
+            _context.Companies.Find(id).Copy(company);
             _context.SaveChanges();
             return company;
 
