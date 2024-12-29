@@ -30,7 +30,13 @@ namespace DeliveriesCompany.Core.Entity
         public int Id { get; set; }
         public int DeliveryManId { get; set; }
 
+        [ForeignKey(nameof(DeliveryManId))]
+        public DeliveryMan DeliveryMan { get; set; }
+
         public int CompanyId { get; set; }
+
+        [ForeignKey(nameof(CompanyId))]
+        public Company Company { get; set; }
 
         public Status Status { get; set; }
 

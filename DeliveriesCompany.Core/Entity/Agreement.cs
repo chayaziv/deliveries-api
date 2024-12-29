@@ -24,6 +24,8 @@ namespace DeliveriesCompany.Core.Entity
 
         public Distribution Distribution { get; set; }
 
+        public List<Company> Companies { get; set; }
+
     }
 }
 

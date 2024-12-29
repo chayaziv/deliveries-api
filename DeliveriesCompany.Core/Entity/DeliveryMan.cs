@@ -29,13 +29,12 @@ namespace DeliveriesCompany.Core.Entity
 
         public Area PreferedArea { get; set; }
 
-
         public Vehicle Vehicle { get; set; }
 
         public double Salary { get; set; }
         public double Bonus { get; set; }
 
-       
+        public List<Sending> Sendings { get; set; }
 
 
     }

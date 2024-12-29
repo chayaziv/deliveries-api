@@ -17,6 +17,9 @@ namespace DeliveriesCompany.Core.Entity
 
         public int AgreementId { get; set; }
 
+        [ForeignKey(nameof(AgreementId))]
+        public Agreement Agreement { get; set; }
+
         public string  ContactPersonName { get; set; }
 
         public string ContactPersonPhon { get; set; }
@@ -25,8 +28,7 @@ namespace DeliveriesCompany.Core.Entity
 
         public  DateTime StartAgreementDate { get; set; }
 
-       
-
+        public List<Sending> Sendings { get; set; }
 
     }
 }
