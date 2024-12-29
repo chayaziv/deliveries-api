@@ -15,9 +15,9 @@ namespace DeliveriesCompany.Core.IRepositories
 
         public T Add(T val);
 
-        public T Update(int id, T val);
+        public T Update( T val);
 
-        public bool Delete(T id);
+        public void Delete(T id);
 
     }
 }

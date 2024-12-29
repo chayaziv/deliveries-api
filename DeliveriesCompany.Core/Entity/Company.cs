@@ -25,26 +25,7 @@ namespace DeliveriesCompany.Core.Entity
 
         public  DateTime StartAgreementDate { get; set; }
 
-        public void Copy(Company other)
-        {
-            if (other == null)
-                throw new ArgumentNullException(nameof(other));
-
-            var properties = typeof(Company).GetProperties();
-            foreach (var property in properties)
-            {
-                if (property.Name == nameof(Id))
-                    continue;
-                if (property.CanRead && property.CanWrite)
-                {
-                    var value = property.GetValue(other);
-                    if (value != null)
-                    {
-                        property.SetValue(this, value);
-                    }
-                }
-            }
-        }
+       
 
 
     }

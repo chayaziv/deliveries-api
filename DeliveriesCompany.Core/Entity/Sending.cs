@@ -53,26 +53,7 @@ namespace DeliveriesCompany.Core.Entity
         public bool CraneNeed { get; set; }
         public double Distance { get; set; }
 
-        public void Copy(Sending other)
-        {
-            if (other == null)
-                throw new ArgumentNullException(nameof(other));
-
-            var properties = typeof(Sending).GetProperties();
-            foreach (var property in properties)
-            {
-                if (property.Name == nameof(Id))
-                    continue;
-                if (property.CanRead && property.CanWrite)
-                {
-                    var value = property.GetValue(other);
-                    if (value != null)
-                    {
-                        property.SetValue(this, value);
-                    }
-                }
-            }
-        }
+        
 
     }
 }

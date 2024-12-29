@@ -12,44 +12,43 @@ namespace DeliveriesCompany.Service.Services
 {
     public class DeliveryManService : IDeliveryManService
     {
-
-      
+        
         readonly IRepository<DeliveryMan> _deliveryManRepository;
         public DeliveryManService(IRepository<DeliveryMan> deliveryManRepository)
         {
-          _deliveryManRepository = deliveryManRepository;
+            _deliveryManRepository = deliveryManRepository;
         }
 
         public List<DeliveryMan> getall()
         {
-           
+
             return _deliveryManRepository.GetList();
         }
 
         public DeliveryMan getById(int id)
         {
-            
+
             return _deliveryManRepository.GetById(id);
         }
 
         public DeliveryMan add(DeliveryMan deliveryMan)
         {
-            if (deliveryMan == null)
-                return null;
-                   
-            return _deliveryManRepository.Add(deliveryMan);
+            _deliveryManRepository.Add(deliveryMan);
+            return deliveryMan;
         }
 
         public DeliveryMan update(int id, DeliveryMan deliveryMan)
         {
-            
-            return _deliveryManRepository.Update(id, deliveryMan);
+
+            _deliveryManRepository.Update(deliveryMan);
+            return deliveryMan;
         }
 
         public bool delete(int id)
         {
             DeliveryMan itemToDelete = _deliveryManRepository.GetById(id);
-            return _deliveryManRepository.Delete(itemToDelete);
+            _deliveryManRepository.Delete(itemToDelete);
+            return true;
         }
 
         //public bool isValidDelete(int id)

@@ -38,16 +38,18 @@ namespace DeliveriesCompany.Service.Services
             return _sendingRepository.Add(sending);
         }
 
-        public Sending update(int id, Sending sending)
+        public Sending update( int id,Sending sending)
         {
             
-            return _sendingRepository.Update(id, sending);
+            _sendingRepository.Update( sending);
+            return sending;
         }
 
         public bool delete(int id)
         {
             Sending itemToDelete = _sendingRepository.GetById(id);
-            return _sendingRepository.Delete(itemToDelete);
+            _sendingRepository.Delete(itemToDelete);
+            return true;
         }
     }
 }

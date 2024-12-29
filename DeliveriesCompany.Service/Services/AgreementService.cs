@@ -12,7 +12,6 @@ namespace DeliveriesCompany.Service.Services
     public class AgreementService : IAgreementService
     {
 
-      
         readonly IRepository<Agreement> _agreementRepository;
 
         public AgreementService(IRepository<Agreement> agreementRepository)
@@ -32,21 +31,20 @@ namespace DeliveriesCompany.Service.Services
 
         public Agreement add(Agreement agreement)
         {
-            if (agreement == null)
-                return null;
-           
-            return _agreementRepository.Add(agreement);
+            _agreementRepository.Add(agreement);
+            return agreement;
         }
 
         public Agreement update(int id, Agreement agreement)
         {          
-            return _agreementRepository.Update(id, agreement);
+            return _agreementRepository.Update(agreement);
         }
 
         public bool delete(int id)
         {
            Agreement itemToDelete= _agreementRepository.GetById(id);
-            return _agreementRepository.Delete(itemToDelete);
+            _agreementRepository.Delete(itemToDelete);
+            return true;
         }
     }
 }

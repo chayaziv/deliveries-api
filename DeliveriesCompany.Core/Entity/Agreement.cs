@@ -24,26 +24,6 @@ namespace DeliveriesCompany.Core.Entity
 
         public Distribution Distribution { get; set; }
 
-        public void Copy(Agreement other)
-        {
-            if (other == null)
-                return;
-
-            var properties = typeof(Agreement).GetProperties();
-            foreach (var property in properties)
-            {
-                if (property.Name == nameof(Id))
-                    continue;
-                if (property.CanRead && property.CanWrite)
-                {
-                    var value = property.GetValue(other);
-                    if (value != null)
-                    {
-                        property.SetValue(this, value);
-                    }
-                }
-            }
-        }
-
     }
 }
+
