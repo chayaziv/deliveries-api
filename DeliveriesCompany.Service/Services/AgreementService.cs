@@ -12,38 +12,42 @@ namespace DeliveriesCompany.Service.Services
     public class AgreementService : IAgreementService
     {
 
-        readonly IRepository<Agreement> _agreementRepository;
+        readonly IRepositoryManager _repository;
 
-        public AgreementService(IRepository<Agreement> agreementRepository)
+        public AgreementService(IRepositoryManager repository)
         {
-            _agreementRepository = agreementRepository;
+            _repository = repository;
         }
         public List<Agreement> getall()
         {
-            return _agreementRepository.GetList();
+            return _repository.Agreements.GetList();
         }
 
         public Agreement getById(int id)
         {
            
-            return _agreementRepository.GetById(id);
+            return _repository.Agreements.GetById(id);
         }
 
         public Agreement add(Agreement agreement)
         {
-            _agreementRepository.Add(agreement);
+            _repository.Agreements.Add(agreement);
+            _repository.Save();
             return agreement;
         }
 
         public Agreement update(int id, Agreement agreement)
-        {          
-            return _agreementRepository.Update(agreement);
+        {
+            var item=_repository.Agreements.Update(agreement);
+            _repository.Save();
+            return item;
         }
 
         public bool delete(int id)
         {
-           Agreement itemToDelete= _agreementRepository.GetById(id);
-            _agreementRepository.Delete(itemToDelete);
+           Agreement itemToDelete= _repository.Agreements.GetById(id);
+            _repository.Agreements.Delete(itemToDelete);
+            _repository.Save();
             return true;
         }
     }

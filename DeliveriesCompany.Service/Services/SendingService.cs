@@ -15,40 +15,43 @@ namespace DeliveriesCompany.Service.Services
     {
         
 
-        readonly IRepository<Sending> _sendingRepository;
-        public SendingService(IRepository<Sending> sendingRepository)
+        readonly IRepositoryManager _repository;
+        public SendingService(IRepositoryManager repository)
         {
-            _sendingRepository = sendingRepository;
+            _repository = repository;
         }
 
         public List<Sending> getAll()
         {
-            return _sendingRepository.GetList();
+            return _repository.Sendings.GetList();
         }
 
         public Sending getById(int id)
         {
            
-            return _sendingRepository.GetById(id);
+            return _repository.Sendings.GetById(id);
         }
 
         public Sending add(Sending sending)
         {
-           
-            return _sendingRepository.Add(sending);
+            var item=_repository.Sendings.Add(sending);
+            _repository.Save();
+            return item;
         }
 
         public Sending update( int id,Sending sending)
         {
             
-            _sendingRepository.Update( sending);
+            _repository.Sendings.Update( sending);
+            _repository.Save();
             return sending;
         }
 
         public bool delete(int id)
         {
-            Sending itemToDelete = _sendingRepository.GetById(id);
-            _sendingRepository.Delete(itemToDelete);
+            Sending itemToDelete = _repository.Sendings.GetById(id);
+            _repository.Sendings.Delete(itemToDelete);
+            _repository.Save();
             return true;
         }
     }

@@ -19,7 +19,8 @@ namespace DeliveriesCompany.Extesion
             s.AddScoped<IAgreementService, AgreementService>();
             s.AddScoped<ICompanyService, CompanyService>();
             s.AddScoped<IDeliveryManService, DeliveryManService>();
-            s.AddScoped<ISendingService, SendingService>();            
+            s.AddScoped<ISendingService, SendingService>();
+            s.AddScoped<IRepositoryManager, RepositoryManager>();
             s.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             s.AddDbContext<DataContext>(optionsBuilder =>
             {

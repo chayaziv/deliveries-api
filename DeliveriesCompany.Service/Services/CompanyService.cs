@@ -13,37 +13,40 @@ namespace DeliveriesCompany.Service.Services
     {
 
         
-        readonly IRepository<Company> _companyRepository;
-        public CompanyService(IRepository<Company> companyRepository)
+        readonly IRepositoryManager _repository;
+        public CompanyService(IRepositoryManager repository)
         {
-            _companyRepository = companyRepository;
+            _repository = repository;
         }
 
         public List<Company> getAll()
         {
-            return _companyRepository.GetList();
+            return _repository.Companys.GetList();
         }
         public Company getById(int id)
         {
             
-            return _companyRepository.GetById(id);
+            return _repository.Companys.GetById(id);
         }
         public Company add(Company company)
         {
                       
-            _companyRepository.Add(company);
+            _repository.Companys.Add(company);
+            _repository.Save();
             return company;
         }
         public Company update(int id, Company company)
         {          
-             _companyRepository.Update(company);
+             _repository.Companys.Update(company);
+            _repository.Save();
             return company;
         }
 
         public bool delete(int id)
         {   
-            Company itemToDelete = _companyRepository.GetById(id);
-            _companyRepository.Delete(itemToDelete);
+            Company itemToDelete = _repository.Companys.GetById(id);
+            _repository.Companys.Delete(itemToDelete);
+            _repository.Save();
             return true;
         }
 
