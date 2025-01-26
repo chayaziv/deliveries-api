@@ -12,11 +12,11 @@ namespace DeliveriesCompany.Core.Iservices
     {
         public List<AgreementDTO> getall();
 
-        public Agreement getById(int id);
+        public AgreementDTO getById(int id);
 
-        public Agreement add(Agreement agreement);
+        public AgreementDTO add(AgreementDTO agreement);
 
-        public Agreement update(int id, Agreement agreement);
+        public AgreementDTO update(int id, AgreementDTO agreement);
 
         public bool delete(int id);
     }

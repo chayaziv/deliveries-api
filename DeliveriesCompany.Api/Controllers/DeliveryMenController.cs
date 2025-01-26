@@ -1,6 +1,8 @@
 ﻿
+using AutoMapper;
+using DeliveriesCompany.Api.PostModels;
 using DeliveriesCompany.Core.Entity;
-
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.Iservices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,19 +16,22 @@ namespace DeliveriesCompany.Api.Controllers
     {
         readonly IDeliveryManService _deliveryManService;
 
-        public DeliveryMenController(IDeliveryManService deliveryManService)
+        readonly IMapper _mapper;
+
+        public DeliveryMenController(IDeliveryManService deliveryManService,IMapper mapper)
         {
             _deliveryManService = deliveryManService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult< List<DeliveryMan>> Get()
+        public ActionResult< List<DeliveryManDTO>> Get()
         {
             return _deliveryManService.getall();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<DeliveryMan> Get(int id)
+        public ActionResult<DeliveryManDTO> Get(int id)
         {
             if (_deliveryManService.getById(id) == null)
                 return NotFound();
@@ -34,18 +39,20 @@ namespace DeliveriesCompany.Api.Controllers
 
         }
         [HttpPost]
-        public ActionResult<DeliveryMan> Post([FromBody] DeliveryMan deliveryMan)
+        public ActionResult<DeliveryManDTO> Post([FromBody] DeliveryManPostModel deliveryMan)
         {
-            DeliveryMan deliveryManAdd = _deliveryManService.add(deliveryMan);
+            var dto=_mapper.Map<DeliveryManDTO>(deliveryMan);
+            var deliveryManAdd = _deliveryManService.add(dto);
            if (deliveryManAdd!=null )
                 return Ok(deliveryManAdd);
            return BadRequest(deliveryManAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<DeliveryMan> Put(int id, [FromBody] DeliveryMan deliveryMan)
+        public ActionResult<DeliveryManDTO> Put(int id, [FromBody] DeliveryManPostModel deliveryMan)
         {
-            DeliveryMan deliveryManUpdate = _deliveryManService.update(id, deliveryMan);
+            var dto = _mapper.Map<DeliveryManDTO>(deliveryMan);
+            var deliveryManUpdate = _deliveryManService.update(id, dto);
             if (deliveryManUpdate!=null)
                 return Ok(deliveryManUpdate);
             return BadRequest(deliveryManUpdate);

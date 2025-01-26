@@ -12,11 +12,11 @@ namespace DeliveriesCompany.Core.Iservices
     {
         public List<SendingDTO> getAll();
 
-        public Sending getById(int id);
+        public SendingDTO getById(int id);
 
-        public Sending add(Sending sending);
+        public SendingDTO add(SendingDTO sending);
 
-        public Sending update(int id, Sending sending);
+        public SendingDTO update(int id, SendingDTO sending);
 
         public bool delete(int id);
     }

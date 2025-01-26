@@ -1,5 +1,8 @@
 ﻿
+using AutoMapper;
+using DeliveriesCompany.Api.PostModels;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.Iservices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,19 +17,22 @@ namespace DeliveriesCompany.Api.Controllers
 
         readonly ISendingService _sendingService;
 
-        public SendingsController(ISendingService sendingService)
+        readonly IMapper _mapper;
+
+        public SendingsController(ISendingService sendingService,IMapper mapper)
         {
             _sendingService = sendingService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<Sending>> Get()
+        public ActionResult<List<SendingDTO>> Get()
         {
             return _sendingService.getAll();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Sending> Get(int id)
+        public ActionResult<SendingDTO> Get(int id)
         {
             if (_sendingService.getById(id) == null)
                 return NotFound();
@@ -34,18 +40,20 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Sending> Post([FromBody] Sending sending)
+        public ActionResult<SendingDTO> Post([FromBody] SendingPostModel sending)
         {
-            Sending sendingAdd = _sendingService.add(sending);
+            var dto = _mapper.Map<SendingDTO>(sending);
+            var sendingAdd = _sendingService.add(dto);
             if (sendingAdd != null)
                 return Ok(sendingAdd);
             return BadRequest(sendingAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Sending> Put(int id, [FromBody] Sending sending)
+        public ActionResult<SendingDTO> Put(int id, [FromBody] SendingPostModel sending)
         {
-            Sending sendingUpdate = _sendingService.update(id, sending);
+            var dto= _mapper.Map<SendingDTO>(sending);
+            var sendingUpdate = _sendingService.update(id, dto);
             if (sendingUpdate != null)
                 return Ok(sendingUpdate);
             return NotFound(sendingUpdate);

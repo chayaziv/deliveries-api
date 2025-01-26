@@ -1,5 +1,8 @@
 ﻿
+using AutoMapper;
+using DeliveriesCompany.Api.PostModels;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.Iservices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,20 +15,22 @@ namespace DeliveriesCompany.Api.Controllers
     public class AgreementsController : ControllerBase
     {
         readonly IAgreementService _agreementService;
+        readonly IMapper _mapper;
 
-        public AgreementsController(IAgreementService agreementService)
+        public AgreementsController(IAgreementService agreementService,IMapper mapper)
         {
             _agreementService = agreementService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<Agreement>> Get()
+        public ActionResult<List<AgreementDTO>> Get()
         {
             return _agreementService.getall();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Agreement> Get(int id)
+        public ActionResult<AgreementDTO> Get(int id)
         {
             if (_agreementService.getById(id) == null)
                 return NotFound();
@@ -33,9 +38,10 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Agreement> Post([FromBody] Agreement agreement)
+        public ActionResult<AgreementDTO> Post([FromBody] AgreementPostModel agreement)
         {
-            Agreement agreementAdd = _agreementService.add(agreement);
+            var dto=_mapper.Map<AgreementDTO>(agreement);
+           var agreementAdd = _agreementService.add(dto);
             if (agreementAdd != null)
                 return Ok(agreementAdd);
             return BadRequest(agreementAdd);
@@ -43,9 +49,10 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult<Agreement> Put(int id, [FromBody] Agreement agreement)
+        public ActionResult<AgreementDTO> Put(int id, [FromBody] AgreementPostModel agreement)
         {
-            Agreement agreementUpdate = _agreementService.update(id, agreement);
+            var dto=_mapper.Map<AgreementDTO>(agreement);
+            var agreementUpdate = _agreementService.update(id, dto);
             if (agreementUpdate != null)
                 return Ok(agreementUpdate);
             return NotFound(agreementUpdate);

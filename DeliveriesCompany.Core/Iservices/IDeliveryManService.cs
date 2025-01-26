@@ -13,11 +13,11 @@ namespace DeliveriesCompany.Core.Iservices
 
         public List<DeliveryManDTO> getall();
 
-        public DeliveryMan getById(int id);
+        public DeliveryManDTO getById(int id);
 
-        public DeliveryMan add(DeliveryMan deliveryMan);
+        public DeliveryManDTO add(DeliveryManDTO deliveryMan);
 
-        public DeliveryMan update(int id, DeliveryMan deliveryMan);
+        public DeliveryManDTO update(int id, DeliveryManDTO deliveryMan);
 
         public bool delete(int id);
     }

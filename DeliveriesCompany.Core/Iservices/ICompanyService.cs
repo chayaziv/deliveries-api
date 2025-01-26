@@ -14,11 +14,11 @@ namespace DeliveriesCompany.Core.Iservices
 
         public List<CompanyDTO> getAll();
 
-        public Company getById(int id);
+        public CompanyDTO getById(int id);
 
-        public Company add(Company company);
+        public CompanyDTO add(CompanyDTO company);
 
-        public Company update(int id, Company company);
+        public CompanyDTO update(int id, CompanyDTO company);
 
 
         public bool delete(int id);

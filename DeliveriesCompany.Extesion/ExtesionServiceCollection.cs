@@ -23,7 +23,7 @@ namespace DeliveriesCompany.Extesion
             s.AddScoped<ISendingService, SendingService>();
             s.AddScoped<IRepositoryManager, RepositoryManager>();
             s.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            s.AddAutoMapper(typeof(AutoMapperProfile));
+            
             s.AddDbContext<DataContext>(optionsBuilder =>
             {
                 optionsBuilder.UseSqlServer("Data Source = DESKTOP-13C4MS2; Initial Catalog = Deliveries_DB; Integrated Security = true; ");
