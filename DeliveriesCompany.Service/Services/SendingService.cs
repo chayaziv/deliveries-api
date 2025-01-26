@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
 
@@ -25,30 +26,37 @@ namespace DeliveriesCompany.Service.Services
             _mapper = mapper;
         }
 
-        public List<Sending> getAll()
+        public List<SendingDTO> getAll()
         {
-            return _repository.Sendings.GetList();
+            var list= _repository.Sendings.GetList();
+            var listDTOs= new List<SendingDTO>();
+            foreach (var item in list)
+            {
+                listDTOs.Add(_mapper.Map<SendingDTO>(item));
+            }
+            return listDTOs;
         }
 
-        public Sending getById(int id)
+        public SendingDTO getById(int id)
         {
-           
-            return _repository.Sendings.GetById(id);
+           var item= _repository.Sendings.GetById(id);
+            return _mapper.Map<SendingDTO>(item);
         }
 
-        public Sending add(Sending sending)
+        public SendingDTO add(SendingDTO sending)
         {
-            var item=_repository.Sendings.Add(sending);
+            var model=_mapper.Map<Sending>(sending);
+            _repository.Sendings.Add(model);
             _repository.Save();
-            return item;
+            return _mapper.Map<SendingDTO>(model);
         }
 
-        public Sending update( int id,Sending sending)
+        public SendingDTO update( int id,SendingDTO sending)
         {
-            
-            _repository.Sendings.Update( sending);
+            var model = _mapper.Map<Sending>(sending);
+            var updated=_repository.Sendings.Update( model);
             _repository.Save();
-            return sending;
+            return _mapper.Map<SendingDTO>(updated);
         }
 
         public bool delete(int id)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
 
@@ -23,27 +24,34 @@ namespace DeliveriesCompany.Service.Services
             _mapper = mapper;
         }
 
-        public List<Company> getAll()
+        public List<CompanyDTO> getAll()
         {
-            return _repository.Companys.GetList();
+            var list = _repository.Companys.GetList();
+            var listDTOs= new List<CompanyDTO>();
+            foreach (var company in list)
+            {
+                listDTOs.Add(_mapper.Map<CompanyDTO>(company));
+            }
+            return listDTOs;
         }
-        public Company getById(int id)
+        public CompanyDTO getById(int id)
         {
-            
-            return _repository.Companys.GetById(id);
+            var item= _repository.Companys.GetById(id);
+            return _mapper.Map<CompanyDTO>(item);
         }
-        public Company add(Company company)
+        public CompanyDTO add(CompanyDTO company)
         {
-                      
-            _repository.Companys.Add(company);
+           var model=_mapper.Map<Company>(company);           
+            _repository.Companys.Add(model);
             _repository.Save();
-            return company;
+            return _mapper.Map<CompanyDTO>(model);
         }
-        public Company update(int id, Company company)
+        public CompanyDTO update(int id, CompanyDTO company)
         {          
-             _repository.Companys.Update(company);
+            var model= _mapper.Map<Company>(company);
+             var updated=_repository.Companys.Update(model);
             _repository.Save();
-            return company;
+            return _mapper.Map<CompanyDTO>(updated);
         }
 
         public bool delete(int id)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 
 namespace DeliveriesCompany.Core.Iservices
 {
@@ -11,7 +12,7 @@ namespace DeliveriesCompany.Core.Iservices
     {
 
 
-        public List<Company> getAll();
+        public List<CompanyDTO> getAll();
 
         public Company getById(int id);
 

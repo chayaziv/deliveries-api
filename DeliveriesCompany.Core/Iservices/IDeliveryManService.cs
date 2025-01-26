@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 
 namespace DeliveriesCompany.Core.Iservices
 {
     public interface IDeliveryManService
     {
 
-        public List<DeliveryMan> getall();
+        public List<DeliveryManDTO> getall();
 
         public DeliveryMan getById(int id);
 

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 
 namespace DeliveriesCompany.Core.Iservices
 {
     public interface ISendingService
     {
-        public List<Sending> getAll();
+        public List<SendingDTO> getAll();
 
         public Sending getById(int id);
 

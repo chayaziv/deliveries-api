@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
 
@@ -22,31 +23,37 @@ namespace DeliveriesCompany.Service.Services
             _mapper = mapper;
         }
 
-        public List<DeliveryMan> getall()
+        public List<DeliveryManDTO> getall()
         {
-
-            return _repository.DeliveryMen.GetList();
+            var list= _repository.DeliveryMen.GetList();
+            var listDTOs= new List<DeliveryManDTO>();
+            foreach (var item in list)
+            {
+                listDTOs.Add(_mapper.Map<DeliveryManDTO>(item));
+            }
+            return listDTOs;
         }
 
-        public DeliveryMan getById(int id)
+        public DeliveryManDTO getById(int id)
         {
-
-            return _repository.DeliveryMen.GetById(id);
+            var item= _repository.DeliveryMen.GetById(id);
+            return _mapper.Map<DeliveryManDTO>(item);
         }
 
-        public DeliveryMan add(DeliveryMan deliveryMan)
+        public DeliveryManDTO add(DeliveryManDTO deliveryMan)
         {
-            _repository.DeliveryMen.Add(deliveryMan);
+            var model = _mapper.Map<DeliveryMan>(deliveryMan);
+            _repository.DeliveryMen.Add(model);
             _repository.Save();
-            return deliveryMan;
+            return _mapper.Map<DeliveryManDTO>(model);
         }
 
-        public DeliveryMan update(int id, DeliveryMan deliveryMan)
+        public DeliveryManDTO update(int id, DeliveryManDTO deliveryMan)
         {
-
-            _repository.DeliveryMen.Update(deliveryMan);
+            var model=_mapper.Map<DeliveryMan>(deliveryMan);
+            var updated=_repository.DeliveryMen.Update(model);
             _repository.Save();
-            return deliveryMan;
+            return _mapper.Map<DeliveryManDTO>(updated);
         }
 
         public bool delete(int id)

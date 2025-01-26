@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DeliveriesCompany.Core.Entity;
+using DeliveriesCompany.Core.EntityDTO;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
 
@@ -16,39 +17,48 @@ namespace DeliveriesCompany.Service.Services
         readonly IRepositoryManager _repository;
         readonly IMapper _mapper;
 
-        public AgreementService(IRepositoryManager repository,IMapper mapper)
+        public AgreementService(IRepositoryManager repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-        public List<Agreement> getall()
+        public List<AgreementDTO> getall()
         {
-            return _repository.Agreements.GetList();
+            var list = _repository.Agreements.GetList();
+            var listDTOs = new List<AgreementDTO>();
+            foreach (var item in list)
+            {
+                listDTOs.Add(_mapper.Map<AgreementDTO>(item));
+            }
+
+            return listDTOs;
         }
 
-        public Agreement getById(int id)
+        public AgreementDTO getById(int id)
         {
-           
-            return _repository.Agreements.GetById(id);
+            var item= _repository.Agreements.GetById(id);
+            return _mapper.Map<AgreementDTO>(item);
         }
 
-        public Agreement add(Agreement agreement)
+        public AgreementDTO add(AgreementDTO agreement)
         {
-            _repository.Agreements.Add(agreement);
+            var model = _mapper.Map<Agreement>(agreement);
+            _repository.Agreements.Add(model);
             _repository.Save();
-            return agreement;
+            return _mapper.Map<AgreementDTO>(model);
         }
 
-        public Agreement update(int id, Agreement agreement)
+        public AgreementDTO update(int id, AgreementDTO agreement)
         {
-            var item=_repository.Agreements.Update(agreement);
+            var model= _mapper.Map<Agreement>(agreement);
+            var updated = _repository.Agreements.Update(model);
             _repository.Save();
-            return item;
+            return _mapper.Map<AgreementDTO>(updated);
         }
 
         public bool delete(int id)
         {
-           Agreement itemToDelete= _repository.Agreements.GetById(id);
+            Agreement itemToDelete = _repository.Agreements.GetById(id);
             _repository.Agreements.Delete(itemToDelete);
             _repository.Save();
             return true;
