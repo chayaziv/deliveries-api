@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DeliveriesCompany.Core.Entity;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
@@ -16,9 +17,12 @@ namespace DeliveriesCompany.Service.Services
         
 
         readonly IRepositoryManager _repository;
-        public SendingService(IRepositoryManager repository)
+
+        readonly IMapper _mapper;
+        public SendingService(IRepositoryManager repository,IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public List<Sending> getAll()

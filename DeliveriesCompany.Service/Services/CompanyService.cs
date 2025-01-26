@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DeliveriesCompany.Core.Entity;
 using DeliveriesCompany.Core.IRepositories;
 using DeliveriesCompany.Core.Iservices;
@@ -14,9 +15,12 @@ namespace DeliveriesCompany.Service.Services
 
         
         readonly IRepositoryManager _repository;
-        public CompanyService(IRepositoryManager repository)
+
+        readonly IMapper _mapper;
+        public CompanyService(IRepositoryManager repository,IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public List<Company> getAll()
