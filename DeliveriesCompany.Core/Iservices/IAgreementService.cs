@@ -14,10 +14,10 @@ namespace DeliveriesCompany.Core.Iservices
 
         public AgreementDTO getById(int id);
 
-        public AgreementDTO add(AgreementDTO agreement);
+        public Task< AgreementDTO> addAsync(AgreementDTO agreement);
 
-        public AgreementDTO update(int id, AgreementDTO agreement);
+        public Task< AgreementDTO> updateAsync(int id, AgreementDTO agreement);
 
-        public bool delete(int id);
+        public Task<bool> deleteAsync(int id);
     }
 }

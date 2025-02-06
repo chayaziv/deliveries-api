@@ -14,11 +14,11 @@ namespace DeliveriesCompany.Core.Iservices
 
         public SendingDTO getById(int id);
 
-        public SendingDTO add(SendingDTO sending);
+        public Task< SendingDTO> addAsync(SendingDTO sending);
 
-        public SendingDTO update(int id, SendingDTO sending);
+        public Task<SendingDTO> updateAsync(int id, SendingDTO sending);
 
-        public bool delete(int id);
+        public Task<bool >deleteAsync(int id);
     }
    
 }

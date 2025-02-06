@@ -25,9 +25,9 @@ namespace DeliveriesCompany.Data.Repository
             DeliveryMen = deliveryMen;
             Sendings = sendings;
         }
-        public void Save()
+        public async Task<int> SaveAsync()
         {
-            _context.SaveChanges();
+          return await _context.SaveChangesAsync();
         }
     }
 }

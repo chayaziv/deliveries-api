@@ -43,27 +43,27 @@ namespace DeliveriesCompany.Service.Services
             return _mapper.Map<SendingDTO>(item);
         }
 
-        public SendingDTO add(SendingDTO sending)
+        public async Task<SendingDTO> addAsync(SendingDTO sending)
         {
             var model=_mapper.Map<Sending>(sending);
             _repository.Sendings.Add(model);
-            _repository.Save();
+            await _repository.SaveAsync();
             return _mapper.Map<SendingDTO>(model);
         }
 
-        public SendingDTO update( int id,SendingDTO sending)
+        public async Task<SendingDTO> updateAsync( int id,SendingDTO sending)
         {
             var model = _mapper.Map<Sending>(sending);
             var updated=_repository.Sendings.Update( model);
-            _repository.Save();
+           await _repository.SaveAsync();
             return _mapper.Map<SendingDTO>(updated);
         }
 
-        public bool delete(int id)
+        public async Task<bool> deleteAsync(int id)
         {
             Sending itemToDelete = _repository.Sendings.GetById(id);
             _repository.Sendings.Delete(itemToDelete);
-            _repository.Save();
+           await _repository.SaveAsync();
             return true;
         }
     }

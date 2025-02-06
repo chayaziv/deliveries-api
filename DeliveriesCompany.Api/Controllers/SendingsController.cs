@@ -40,20 +40,20 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<SendingDTO> Post([FromBody] SendingPostModel sending)
+        public async Task<ActionResult<SendingDTO>> Post([FromBody] SendingPostModel sending)
         {
             var dto = _mapper.Map<SendingDTO>(sending);
-            var sendingAdd = _sendingService.add(dto);
+            var sendingAdd = await _sendingService.addAsync(dto);
             if (sendingAdd != null)
                 return Ok(sendingAdd);
             return BadRequest(sendingAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<SendingDTO> Put(int id, [FromBody] SendingPostModel sending)
+        public async Task< ActionResult<SendingDTO>> Put(int id, [FromBody] SendingPostModel sending)
         {
             var dto= _mapper.Map<SendingDTO>(sending);
-            var sendingUpdate = _sendingService.update(id, dto);
+            var sendingUpdate = await _sendingService.updateAsync(id, dto);
             if (sendingUpdate != null)
                 return Ok(sendingUpdate);
             return NotFound(sendingUpdate);
@@ -61,9 +61,9 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            if (!_sendingService.delete(id))
+            if (!await _sendingService.deleteAsync(id))
                 return NotFound();
             return Ok();
         }

@@ -41,10 +41,10 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpPost]
-        public ActionResult<CompanyDTO> Post([FromBody] CompanyPostModel company)
+        public async Task<ActionResult<CompanyDTO>> Post([FromBody] CompanyPostModel company)
         {
             var dto=_mapper.Map<CompanyDTO>(company);
-            var companyAdd = _companyService.add(dto);
+            var companyAdd = await _companyService.addAsync(dto);
             if (companyAdd!=null)
                 return Ok(companyAdd);
             return BadRequest(companyAdd);
@@ -52,10 +52,10 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult<CompanyDTO> Put(int id, [FromBody] CompanyPostModel company)
+        public async Task<ActionResult<CompanyDTO>> PutAsync(int id, [FromBody] CompanyPostModel company)
         {
             var dto = _mapper.Map<CompanyDTO>(company);
-            var companyUpdate = _companyService.update(id, dto);
+            var companyUpdate =await _companyService.updateAsync(id, dto);
             if (companyUpdate!= null)
                 return Ok(companyUpdate);
             return BadRequest(companyUpdate);
@@ -63,9 +63,9 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            if (!_companyService.delete(id))
+            if (!await _companyService.deleteAsync(id))
                 return NotFound();
             return Ok();
         }

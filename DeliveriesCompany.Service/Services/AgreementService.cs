@@ -40,27 +40,27 @@ namespace DeliveriesCompany.Service.Services
             return _mapper.Map<AgreementDTO>(item);
         }
 
-        public AgreementDTO add(AgreementDTO agreement)
+        public async Task< AgreementDTO> addAsync(AgreementDTO agreement)
         {
             var model = _mapper.Map<Agreement>(agreement);
             _repository.Agreements.Add(model);
-            _repository.Save();
+            await _repository.SaveAsync();
             return _mapper.Map<AgreementDTO>(model);
         }
 
-        public AgreementDTO update(int id, AgreementDTO agreement)
+        public async Task< AgreementDTO> updateAsync(int id, AgreementDTO agreement)
         {
             var model= _mapper.Map<Agreement>(agreement);
             var updated = _repository.Agreements.Update(model);
-            _repository.Save();
+           await _repository.SaveAsync();
             return _mapper.Map<AgreementDTO>(updated);
         }
 
-        public bool delete(int id)
+        public async Task< bool> deleteAsync(int id)
         {
             Agreement itemToDelete = _repository.Agreements.GetById(id);
             _repository.Agreements.Delete(itemToDelete);
-            _repository.Save();
+           await _repository.SaveAsync();
             return true;
         }
     }

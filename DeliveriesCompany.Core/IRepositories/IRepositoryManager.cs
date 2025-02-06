@@ -15,6 +15,6 @@ namespace DeliveriesCompany.Core.IRepositories
 
         public IRepository<Sending> Sendings { get; }
 
-        void Save();
+        Task<int> SaveAsync();
     }
 }

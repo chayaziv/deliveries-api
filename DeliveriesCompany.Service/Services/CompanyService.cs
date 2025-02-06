@@ -39,26 +39,26 @@ namespace DeliveriesCompany.Service.Services
             var item= _repository.Companys.GetById(id);
             return _mapper.Map<CompanyDTO>(item);
         }
-        public CompanyDTO add(CompanyDTO company)
+        public async Task< CompanyDTO >addAsync(CompanyDTO company)
         {
            var model=_mapper.Map<Company>(company);           
             _repository.Companys.Add(model);
-            _repository.Save();
+           await _repository.SaveAsync();
             return _mapper.Map<CompanyDTO>(model);
         }
-        public CompanyDTO update(int id, CompanyDTO company)
+        public async Task<CompanyDTO >updateAsync(int id, CompanyDTO company)
         {          
             var model= _mapper.Map<Company>(company);
              var updated=_repository.Companys.Update(model);
-            _repository.Save();
+           await _repository.SaveAsync();
             return _mapper.Map<CompanyDTO>(updated);
         }
 
-        public bool delete(int id)
+        public async Task< bool >deleteAsync(int id)
         {   
             Company itemToDelete = _repository.Companys.GetById(id);
             _repository.Companys.Delete(itemToDelete);
-            _repository.Save();
+            await _repository.SaveAsync();
             return true;
         }
 

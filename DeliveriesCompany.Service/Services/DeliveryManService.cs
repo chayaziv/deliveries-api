@@ -40,27 +40,27 @@ namespace DeliveriesCompany.Service.Services
             return _mapper.Map<DeliveryManDTO>(item);
         }
 
-        public DeliveryManDTO add(DeliveryManDTO deliveryMan)
+        public async Task< DeliveryManDTO> addAsync(DeliveryManDTO deliveryMan)
         {
             var model = _mapper.Map<DeliveryMan>(deliveryMan);
             _repository.DeliveryMen.Add(model);
-            _repository.Save();
+            await _repository.SaveAsync();
             return _mapper.Map<DeliveryManDTO>(model);
         }
 
-        public DeliveryManDTO update(int id, DeliveryManDTO deliveryMan)
+        public async Task<DeliveryManDTO> updateAsync(int id, DeliveryManDTO deliveryMan)
         {
             var model=_mapper.Map<DeliveryMan>(deliveryMan);
             var updated=_repository.DeliveryMen.Update(model);
-            _repository.Save();
+            await _repository.SaveAsync();
             return _mapper.Map<DeliveryManDTO>(updated);
         }
 
-        public bool delete(int id)
+        public async Task<bool> deleteAsync(int id)
         {
             DeliveryMan itemToDelete = _repository.DeliveryMen.GetById(id);
             _repository.DeliveryMen.Delete(itemToDelete);
-            _repository.Save();
+            await _repository.SaveAsync();
             return true;
         }
 

@@ -39,29 +39,29 @@ namespace DeliveriesCompany.Api.Controllers
 
         }
         [HttpPost]
-        public ActionResult<DeliveryManDTO> Post([FromBody] DeliveryManPostModel deliveryMan)
+        public async Task<ActionResult<DeliveryManDTO>> Post([FromBody] DeliveryManPostModel deliveryMan)
         {
             var dto=_mapper.Map<DeliveryManDTO>(deliveryMan);
-            var deliveryManAdd = _deliveryManService.add(dto);
+            var deliveryManAdd =await _deliveryManService.addAsync(dto);
            if (deliveryManAdd!=null )
                 return Ok(deliveryManAdd);
            return BadRequest(deliveryManAdd);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<DeliveryManDTO> Put(int id, [FromBody] DeliveryManPostModel deliveryMan)
+        public async Task<ActionResult<DeliveryManDTO>> Put(int id, [FromBody] DeliveryManPostModel deliveryMan)
         {
             var dto = _mapper.Map<DeliveryManDTO>(deliveryMan);
-            var deliveryManUpdate = _deliveryManService.update(id, dto);
+            var deliveryManUpdate =await _deliveryManService.updateAsync(id, dto);
             if (deliveryManUpdate!=null)
                 return Ok(deliveryManUpdate);
             return BadRequest(deliveryManUpdate);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            if (!_deliveryManService.delete(id))
+            if (!await _deliveryManService.deleteAsync(id))
                 return BadRequest();
             return Ok();
         }

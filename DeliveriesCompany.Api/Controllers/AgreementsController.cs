@@ -38,10 +38,10 @@ namespace DeliveriesCompany.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<AgreementDTO> Post([FromBody] AgreementPostModel agreement)
+        public async Task< ActionResult<AgreementDTO>> Post([FromBody] AgreementPostModel agreement)
         {
             var dto=_mapper.Map<AgreementDTO>(agreement);
-           var agreementAdd = _agreementService.add(dto);
+           var agreementAdd = await _agreementService.addAsync(dto);
             if (agreementAdd != null)
                 return Ok(agreementAdd);
             return BadRequest(agreementAdd);
@@ -49,10 +49,10 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult<AgreementDTO> Put(int id, [FromBody] AgreementPostModel agreement)
+        public async Task< ActionResult<AgreementDTO> >Put(int id, [FromBody] AgreementPostModel agreement)
         {
             var dto=_mapper.Map<AgreementDTO>(agreement);
-            var agreementUpdate = _agreementService.update(id, dto);
+            var agreementUpdate = await _agreementService.updateAsync(id, dto);
             if (agreementUpdate != null)
                 return Ok(agreementUpdate);
             return NotFound(agreementUpdate);
@@ -61,9 +61,9 @@ namespace DeliveriesCompany.Api.Controllers
 
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            if (!_agreementService.delete(id))
+            if (!await _agreementService.deleteAsync(id))
                 return NotFound();
             return Ok();
         }

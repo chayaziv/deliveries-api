@@ -16,11 +16,11 @@ namespace DeliveriesCompany.Core.Iservices
 
         public CompanyDTO getById(int id);
 
-        public CompanyDTO add(CompanyDTO company);
+        public Task< CompanyDTO> addAsync(CompanyDTO company);
 
-        public CompanyDTO update(int id, CompanyDTO company);
+        public Task< CompanyDTO> updateAsync(int id, CompanyDTO company);
 
 
-        public bool delete(int id);
+        public Task< bool> deleteAsync(int id);
     }
 }

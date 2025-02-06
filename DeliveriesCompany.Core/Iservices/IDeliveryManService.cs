@@ -15,10 +15,10 @@ namespace DeliveriesCompany.Core.Iservices
 
         public DeliveryManDTO getById(int id);
 
-        public DeliveryManDTO add(DeliveryManDTO deliveryMan);
+        public Task< DeliveryManDTO> addAsync(DeliveryManDTO deliveryMan);
 
-        public DeliveryManDTO update(int id, DeliveryManDTO deliveryMan);
+        public Task< DeliveryManDTO> updateAsync(int id, DeliveryManDTO deliveryMan);
 
-        public bool delete(int id);
+        public Task< bool> deleteAsync(int id);
     }
 }

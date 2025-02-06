@@ -30,13 +30,11 @@ namespace DeliveriesCompany.Data.Repository
         public T Add(T entity)
         {
             _dbSet.Add(entity);
-           
             return entity;
         }
         public void Delete(T entity)
         {
-            _dbSet.Remove(entity);
-            
+            _dbSet.Remove(entity);       
         }
 
         public T Update(T entity)
